@@ -32,9 +32,67 @@ namespace Lib.Common
     //- [ ] Space
     //    - contiguous in memory, so proximity helps performance
     //    - space needed = (array capacity, which is >= n) * size of item, but even if 2n, still O(n)
-    public class Class1
+    public class ResizableArray
     {
+        public int Size() //- number of items
+        {
+            throw new NotImplementedException();
+        }
 
+        public int Capacity() //- number of items it can hold
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsEmpty()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void At(int index) //- returns item at given index, blows up if index out of bounds
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Push(double item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(int index, double item) //- inserts item at index, shifts that index's value and trailing elements to the right
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Prepend(double item) //- can use insert above at index 0
+        {
+            throw new NotImplementedException();
+        }
+
+        public double Pop() //- remove from end, return value
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int index) //- delete item at index, shifting all trailing elements left
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(double item) //- looks for value and removes index holding it (even if in multiple places)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Find(double item) //- looks for value and returns first index with that value, -1 if not found
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Resize(int newCpacity) // private function
+        {
+            throw new NotImplementedException();
+        }
     }
 
     //- ### Linked Lists
@@ -71,7 +129,7 @@ namespace Lib.Common
     //    - dequeue: O(1) (linked list and array)
     //    - empty: O(1) (linked list and array)
 
-    
+
     //- ### Hash table
     //- [ ] implement with array using linear probing
     //    - hash(k, m) - m is size of hash table
