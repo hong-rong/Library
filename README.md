@@ -621,13 +621,6 @@ Write code on a whiteboard or paper, not a computer. Test with some sample input
     - Selection sort and insertion sort are both O(n^2) average and worst case
     - For heapsort, see Heap data structure above.
 
-- [ ] For curiosity - not required:
-    - [ ] [Radix Sort](http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html#radixSort)
-    - [ ] [Radix Sort (video)](https://www.youtube.com/watch?v=xhr26ia4k38)
-    - [ ] [Radix Sort, Counting Sort (linear time given constraints) (video)](https://www.youtube.com/watch?v=Nz1KZXbghj8&index=7&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
-    - [ ] [Randomization: Matrix Multiply, Quicksort, Freivalds' algorithm (video)](https://www.youtube.com/watch?v=cNB2lADK3_s&index=8&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp)
-    - [ ] [Sorting in Linear Time (video)](https://www.youtube.com/watch?v=pOKy3RZbSws&list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf&index=14)
-
 ## Graphs
 
 Graphs can be used to represent many problems in computer science, so this section is long, like trees and sorting were.
@@ -948,32 +941,6 @@ You'll get more graph practice in Skiena's book (see Books section below) and th
             - [Design a recommendation system](http://ijcai13.org/files/tutorial_slides/td3.pdf)
             - [Design a URL-shortener system: copied from above](http://www.hiredintech.com/system-design/the-system-design-process/)
             - [Design a cache system](https://www.adayinthelifeof.nl/2011/02/06/memcache-internals/)
-
-- ### Papers
-    - These are Google papers and well-known papers.
-    - Reading all from end to end with full comprehension will likely take more time than you have. I recommend being selective on papers and their sections.
-    - [ ] [1978: Communicating Sequential Processes](http://spinroot.com/courses/summer/Papers/hoare_1978.pdf)
-        - [implemented in Go](https://godoc.org/github.com/thomas11/csp)
-        - [Love classic papers?](https://www.cs.cmu.edu/~crary/819-f09/)
-    - [ ] [2003: The Google File System](http://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf)
-        - replaced by Colossus in 2012
-    - [ ] [2004: MapReduce: Simplified Data Processing on Large Clusters]( http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
-        - mostly replaced by Cloud Dataflow?
-    - [ ] [2007: What Every Programmer Should Know About Memory (very long, and the author encourages skipping of some sections)](https://www.akkadia.org/drepper/cpumemory.pdf)
-    - [ ] [2012: Google's Colossus](https://www.wired.com/2012/07/google-colossus/)
-        - paper not available
-    - [ ] 2012: AddressSanitizer: A Fast Address Sanity Checker:
-        - [paper](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37752.pdf)
-        - [video](https://www.usenix.org/conference/atc12/technical-sessions/presentation/serebryany)
-    - [ ] 2013: Spanner: Google’s Globally-Distributed Database:
-        - [paper](http://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf)
-        - [video](https://www.usenix.org/node/170855)
-    - [ ] [2014: Machine Learning: The High-Interest Credit Card of Technical Debt](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43146.pdf)
-    - [ ] [2015: Continuous Pipelines at Google](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43790.pdf)
-    - [ ] [2015: High-Availability at Massive Scale: Building Google’s Data Infrastructure for Ads](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44686.pdf)
-    - [ ] [2015: TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems](http://download.tensorflow.org/paper/whitepaper2015.pdf )
-    - [ ] [2015: How Developers Search for Code: A Case Study](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43835.pdf)
-    - [ ] [2016: Borg, Omega, and Kubernetes](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44843.pdf)
 
 - ### Testing
     - To cover:
