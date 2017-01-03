@@ -8,5 +8,6 @@ namespace Lib.Common
 {
     public class Class1
     {
+
     }
 }
