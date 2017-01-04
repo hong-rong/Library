@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4BAC62D4-E1DB-4DEC-92BA-C6CC6B2B2A8A}</ProjectGuid>
+    <ProjectGuid>{FCCDEDE1-088F-43A7-A4BA-DDBF526A2136}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lib.Common</RootNamespace>
@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,14 +44,174 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Class2.cs" />
-    <Compile Include="Class3.cs" />
-    <Compile Include="Class4.cs" />
-    <Compile Include="Class5.cs" />
+    <Compile Include="Al\Dp\LongestIncreasingSequence.cs" />
+    <Compile Include="Al\GeneralAlgorithm.cs" />
+    <Compile Include="Al\Graph\Bfs.cs" />
+    <Compile Include="Al\Graph\BfsStats.cs" />
+    <Compile Include="Al\Graph\Dijkstra.cs" />
+    <Compile Include="Al\Graph\BellmanFord.cs" />
+    <Compile Include="Al\Graph\PathStats.cs" />
+    <Compile Include="Al\Graph\DirectedGraph.cs" />
+    <Compile Include="Al\Graph\DfsStats.cs" />
+    <Compile Include="Al\Graph\Dfs.cs" />
+    <Compile Include="Al\Graph\GraphBase.cs" />
+    <Compile Include="Al\Graph\GraphFactory.cs" />
+    <Compile Include="Al\Graph\DagShortestPath.cs" />
+    <Compile Include="Al\Graph\UndirectedGraph.cs" />
+    <Compile Include="Ds\Bst\BST.cs" />
+    <Compile Include="Ds\Bst\BSTNode.cs" />
+    <Compile Include="Ds\Bs\BinarySearch.cs" />
+    <Compile Include="Ds\Bs\BinarySearchMock.cs" />
+    <Compile Include="Ds\Bs\BinarySearchST.cs" />
+    <Compile Include="Ds\Bs\SequentialSearchST.cs" />
+    <Compile Include="Ds\Bt\BinaryNode.cs" />
+    <Compile Include="Ds\Bt\BinaryTree.cs" />
+    <Compile Include="Ds\Common\BinaryNodeBase.cs" />
+    <Compile Include="Ds\Common\Enumeration\BinaryEnumerableEntity.cs" />
+    <Compile Include="Ds\Common\Enumeration\EnumerableEntity.cs" />
+    <Compile Include="Ds\Common\Enumeration\SequentialSearchStEnumerable.cs" />
+    <Compile Include="Ds\Common\Enumeration\LinkedListEnumerable.cs" />
+    <Compile Include="Ds\Common\LinkNode.cs" />
+    <Compile Include="Ds\Common\LinkNodeBase.cs" />
+    <Compile Include="Ds\Common\LinkNodeST.cs" />
+    <Compile Include="Ds\Common\NodeBase.cs" />
+    <Compile Include="Ds\Common\NodeList.cs" />
+    <Compile Include="Ds\Common\St\ISymbolTable.cs" />
+    <Compile Include="Ds\Common\St\ISymbolTableOrdered.cs" />
+    <Compile Include="Ds\Common\St\SymbolTableOrderedBase.cs" />
+    <Compile Include="Ds\Ht\LinearProbingHashST.cs" />
+    <Compile Include="Ds\Ht\SeperateChainingHashST.cs" />
+    <Compile Include="Ds\Ht\SymbolTableHash.cs" />
+    <Compile Include="Ds\Ll\ILinkedList.cs" />
+    <Compile Include="Ds\Ll\LinkedList.cs" />
+    <Compile Include="Ds\Ll\LinkListMock.cs" />
+    <Compile Include="Ds\Pq\IndexMaxPQ.cs" />
+    <Compile Include="Ds\Pq\IndexMinPQ.cs" />
+    <Compile Include="Ds\Pq\MaxPQ.cs" />
+    <Compile Include="Ds\Pq\MinPQ.cs" />
+    <Compile Include="Ds\Queue\DoubleLinkNode.cs" />
+    <Compile Include="Ds\Queue\IQueue.cs" />
+    <Compile Include="Ds\Queue\Queue.cs" />
+    <Compile Include="Ds\Queue\QueueEnumerableEntity.cs" />
+    <Compile Include="Ds\Stack\IStack.cs" />
+    <Compile Include="Ds\Stack\Stack.cs" />
+    <Compile Include="Log\CDriveLocationLogger.cs" />
+    <Compile Include="Log\IMyLog.cs" />
+    <Compile Include="Log\MyLogger.cs" />
+    <Compile Include="Log\MyLoggerBase.cs" />
+    <Compile Include="UnitTest\ExpressionTest.cs" />
+    <Compile Include="UnitTest\Json\JsonTest.cs" />
+    <Compile Include="UnitTest\Json\Page.cs" />
+    <Compile Include="UnitTest\Json\PageLink.cs" />
+    <Compile Include="UnitTest\Json\PageLinkBase.cs" />
+    <Compile Include="UnitTest\Json\PageLinkState.cs" />
+    <Compile Include="Watch\PerformanceWatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResizableArray.cs" />
+    <Compile Include="Watch\TimeOutWatch.cs" />
+    <Compile Include="UnitTest\Sorting\SortingTestHelper.cs" />
+    <Compile Include="Watch\TimeWatch.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase10.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase12.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase14.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase15.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase16.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase17.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase18.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase19.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase20.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase21.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase22.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase23.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase24.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase25.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase26.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase27.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase28.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase29.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase30.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase31.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UnitTest\Sorting\TestCase\TestCase9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
+    <Content Include="UnitTest\Sorting\TestCase\TestCaseResults.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

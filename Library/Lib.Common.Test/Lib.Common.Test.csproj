@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68F324B4-DDB6-4132-81E3-CDCFD4EFA476}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lib.Common.Test</RootNamespace>
+    <AssemblyName>Lib.Common.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Al\BfsTest.cs" />
+    <Compile Include="Al\BellmanFordTest.cs" />
+    <Compile Include="Al\DagShortestPathTest.cs" />
+    <Compile Include="Al\DfsTest.cs" />
+    <Compile Include="Al\DijkstraTest.cs" />
+    <Compile Include="Al\DirectGraphTest.cs" />
+    <Compile Include="Al\LongestIncreasingSequenceTest.cs" />
+    <Compile Include="Al\UndirectedGraphTest.cs" />
+    <Compile Include="Ds\BSTTests.cs" />
+    <Compile Include="Ds\Bs\BinarySearchSTTests.cs" />
+    <Compile Include="Ds\Bs\BinarySearchTestBase.cs" />
+    <Compile Include="Ds\Bs\BinarySearchTests.cs" />
+    <Compile Include="Ds\LinkedListTest.cs" />
+    <Compile Include="Ds\Pq\IndexMaxPQTest.cs" />
+    <Compile Include="Ds\Pq\IndexMinPQTest.cs" />
+    <Compile Include="Ds\Pq\MaxPQTest.cs" />
+    <Compile Include="Ds\Pq\MinPQTest.cs" />
+    <Compile Include="Ds\QueueTests.cs" />
+    <Compile Include="Ds\SequentialSearchSTTests.cs" />
+    <Compile Include="Ds\StackTests.cs" />
+    <Compile Include="Ds\St\LinearProbingHashSTTests.cs" />
+    <Compile Include="Ds\St\SeperateChainingHashSTTests.cs" />
+    <Compile Include="Ds\St\STTestBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ds\_TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib.Common\Lib.Common.csproj">
+      <Project>{fccdede1-088f-43a7-a4ba-ddbf526a2136}</Project>
+      <Name>Lib.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

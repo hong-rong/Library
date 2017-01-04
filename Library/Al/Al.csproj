@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{535426CE-D078-4F76-8813-F2EF4E40E3E3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Algorithm</RootNamespace>
+    <AssemblyName>Al</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mark|AnyCPU'">
+    <OutputPath>bin\Mark\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Fundamentals\BagsQueuesStacks\CreativeProblem.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Creative\Deque.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Creative\EnumerableDeque.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Creative\ResizingArrayDeque.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\LinkedList\DoubleNode.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\LinkedList\DoubleNodeFactory.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\LinkedList\LinkedListQueue.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\LinkedList\NodeBase.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\LinkedList\NodeFactory.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\LinkedList\Node.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Creative\Steque.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Queue\EnumerableQueue.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Queue\Queue.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Queue\QueueString.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Queue\ResizingQueue.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Stack\DoublingStackOfStrings.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Stack\EnumerableFixCapacityStack.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Exercise.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Stack\FixCapacityStack.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Stack\FixCapacityStackWithSeek.cs" />
+    <Compile Include="Fundamentals\BagsQueuesStacks\Stack\FixedCapacityStackOfStrings.cs" />
+    <Compile Include="Fundamentals\BasicProgrammingModel\Exercise.cs" />
+    <Compile Include="Fundamentals\BasicProgrammingModel\Exercise_v1.cs" />
+    <Compile Include="Fundamentals\BasicProgrammingModel\FloatingPointTest.cs" />
+    <Compile Include="Fundamentals\BasicProgrammingModel\QandA.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\Accumulator.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\Counter.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\Date.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\Exercies.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\Rational.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\RobustRational.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\SmartDate.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\Transaction.cs" />
+    <Compile Include="Fundamentals\DataAbstraction\VisualCounter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sorting\ElementarySorts\Exercise.cs" />
+    <Compile Include="Sorting\ElementarySorts\InsertionSort.cs" />
+    <Compile Include="Sorting\ISort.cs" />
+    <Compile Include="Sorting\MergeSort\Exercise.cs" />
+    <Compile Include="Sorting\MergeSort\MergeSort2.cs" />
+    <Compile Include="Sorting\MergeSort\MergeSortBase.cs" />
+    <Compile Include="Sorting\MergeSort\MergeSortBottomUp.cs" />
+    <Compile Include="Sorting\MergeSort\MergeSort.cs" />
+    <Compile Include="Sorting\ElementarySorts\SelectionSort.cs" />
+    <Compile Include="Sorting\ElementarySorts\ShellSort.cs" />
+    <Compile Include="Sorting\QuickSort\QuickSort.cs" />
+    <Compile Include="Sorting\SortBase.cs" />
+    <Compile Include="Sorting\SortRunner.cs" />
+    <Compile Include="String\StringSorts\KeyIndexedCounting.cs" />
+    <Compile Include="String\StringSorts\LSD.cs" />
+    <Compile Include="String\StringSorts\MSD.cs" />
+    <Compile Include="String\StringSorts\Quick3String.cs" />
+    <Compile Include="String\StringSorts\TestSample.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Note.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

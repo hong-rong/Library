@@ -1,0 +1,46 @@
+﻿1. loop control
+	a. i=0, i<N, i++
+	b. i=0, i<N, i *= 2
+
+2. E119, onvert integer to binary form
+	int n = 10;
+            string binary = "";
+            for (int i = n; i > 0; i = i / 2)
+                binary = (i % 2) + binary;
+
+            Debug.WriteLine(binary);
+3. E1114, largest integer less log 2
+
+4. E115, float representation in computer
+
+5. E1118, mulitple and power
+
+6. E1124 Euclid's algorithm:
+	public static int GCD(int p, int q)
+    {
+        if (q == 0) return p;
+        int r = p % q;
+        return GCD(q, r);
+    }
+
+7. E126, string circular rotation:
+	public static bool IsCircular(string s1, string s2)
+    {
+        if (s1.Length == s2.Length && (s1 + s2).IndexOf(s2) != -1)
+            return true;
+
+        return false;
+    }
+
+8. E127 reverse a string:
+	public static string Mystery(string s)
+    {
+        int N = s.Length;
+        if (N <= 1) return s;
+
+        string a = Mystery(s.Substring(0, N / 2));
+        string b = Mystery(s.Substring(N / 2, N - N / 2));
+
+        return b + a;
+    }
+
