@@ -13,3 +13,20 @@ private void Bs(int[] a)
         }
     }
 }
+
+private void Ss(int a[])
+{
+	for(int i=0;i<a.Length;i++)
+	{
+		int index = i;
+		for(int j=i+1;j<a.Length;j++)
+		{
+			if(a[j]<a[index]){
+				index = j;
+			}
+		}
+		int temp = a[index];
+		a[index] = a[j];
+		a[j] = temp;
+	}
+}

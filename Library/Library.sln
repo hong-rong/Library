@@ -4,7 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E17B1334-D7E3-41C4-B2F8-A6388F3EEA13}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
-		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Exercise", "Lib.Exercise\Lib.Exercise.csproj", "{FA7CEB04-E75B-4BF6-97D5-A728582DCA15}"
@@ -16,6 +15,17 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Al", "Al\Al.csproj", "{535426CE-D078-4F76-8813-F2EF4E40E3E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Al.Test", "Al.Test\Al.Test.csproj", "{F2F20F2E-105E-4F1B-9CBF-3EAD4345BC8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Item", "Item", "{D483FB8F-5B9B-489A-933E-2AF102B6411F}"
+	ProjectSection(SolutionItems) = preProject
+		Item\Bubble-sort-example-300px.gif = Item\Bubble-sort-example-300px.gif
+		Item\Insertion-sort-example-300px.gif = Item\Insertion-sort-example-300px.gif
+		Item\Merge-sort-example-300px.gif = Item\Merge-sort-example-300px.gif
+		Item\Quicksort-diagram.svg = Item\Quicksort-diagram.svg
+		Item\Selection-Sort-Animation.gif = Item\Selection-Sort-Animation.gif
+		Item\Sorting_quicksort_anim.gif = Item\Sorting_quicksort_anim.gif
+		Item\TextFile1.txt = Item\TextFile1.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
