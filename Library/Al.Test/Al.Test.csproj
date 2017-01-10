@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="S\MsTests.cs" />
-    <Compile Include="S\Qs.cs" />
+    <Compile Include="S\IsTest.cs" />
     <Compile Include="S\QsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

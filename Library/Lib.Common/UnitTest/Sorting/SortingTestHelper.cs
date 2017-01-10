@@ -13,14 +13,21 @@ namespace Lib.Common.UnitTest.Sorting
     {
         public const string EmbendemResourceTemplate = "Lib.Common.UnitTest.Sorting.TestCase.TestCase{0}.txt";
 
-        public static void SortAssert(Action<IComparable[]> action)
+        public static void SortAssert(Action<IComparable[]> action, bool useTimeOutWatch = false)
         {
             var testCases = GetTestCases();
 
             for (int i = 0; i < testCases.Length; i++)
             {
-                using (new TimeOutWatch())
+                if (useTimeOutWatch)
+                {
+                    using (new TimeOutWatch())
+                        action(testCases[i]);
+                }
+                else
+                {
                     action(testCases[i]);
+                }
 
                 Assert(testCases[i]);
 
