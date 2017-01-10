@@ -1,0 +1,52 @@
+private void Bs(int[] a)
+{
+    for (int i = 0; i < a.Length; i++)
+    {
+        for (int j = 1; j < a.Length; j++)
+        {
+            if (a[j - 1] < a[j])
+            {
+                int temp = a[j - 1];
+                a[j - 1] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+}
+
+private void Ss(int a[])
+{
+	for(int i=0;i<a.Length;i++)
+	{
+		int index = i;
+		for(int j=i+1;j<a.Length;j++)
+		{
+			if(a[j]<a[index]){
+				index = j;
+			}
+		}
+		int temp = a[index];
+		a[index] = a[j];
+		a[j] = temp;
+	}
+}
+
+//1, 2
+//2, 1
+//2, 4, 3
+private void Is(int[] a){
+	for(int i=1;i<a.Length;i++){
+		int temp = a[i];
+		for(int j=i-1;j>=0;j--){
+			if(temp<a[j]){
+				a[j+1] = a[j];
+				if(j==0){
+					a[j] = temp;
+				}
+			}else{
+				a[j+1] = temp;
+				break;
+			}
+		}
+	}
+}
