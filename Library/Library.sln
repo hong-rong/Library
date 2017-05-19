@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Item", "Item", "{D483FB8F-5
 		Item\TextFile1.txt = Item\TextFile1.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cracking", "Cracking\Cracking.csproj", "{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cracking.Test", "Cracking.Test\Cracking.Test.csproj", "{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +68,18 @@ Global
 		{F2F20F2E-105E-4F1B-9CBF-3EAD4345BC8B}.Mark|Any CPU.Build.0 = Release|Any CPU
 		{F2F20F2E-105E-4F1B-9CBF-3EAD4345BC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2F20F2E-105E-4F1B-9CBF-3EAD4345BC8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}.Mark|Any CPU.ActiveCfg = Release|Any CPU
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}.Mark|Any CPU.Build.0 = Release|Any CPU
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}.Mark|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}.Mark|Any CPU.Build.0 = Release|Any CPU
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
