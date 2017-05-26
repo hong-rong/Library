@@ -337,6 +337,69 @@ namespace Cracking
             return true;
         }
 
+
+        #region IsPalinRec
+
+        public bool IsPalinRec(Entity n)
+        {
+            if (n == null) throw new ArgumentNullException();
+            if (n.Next == null) return true;
+
+            int length = CountLength(n);
+
+            Entity t = n;
+            //1 2 2 1
+            return IsPalin(t, length).IsPaline;
+        }
+
+        private ReturnEntity IsPalin(Entity n, int length)
+        {
+            //if (n == null || length == 0)
+            if (length == 0)
+            {
+                return new ReturnEntity
+                {
+                    Entity = n,
+                    IsPaline = true
+                };
+            }
+            if (length == 1)
+            {
+                return new ReturnEntity
+                {
+                    Entity = n.Next,
+                    IsPaline = true
+                };
+            }
+
+            var returnNode = IsPalin(n.Next, length - 2);
+            if (!returnNode.IsPaline)
+            {
+                returnNode.Entity = returnNode.Entity.Next;
+                return returnNode;
+            }
+
+            returnNode.IsPaline = returnNode.Entity.Data == n.Data;
+            returnNode.Entity = returnNode.Entity.Next;
+
+            return returnNode;
+        }
+
+        private static int CountLength(Entity n)
+        {
+            int length = 0;
+            Entity t = n;
+            while (t != null)
+            {
+                length++;
+                t = t.Next;
+            }
+            return length;
+        }
+
+        #endregion
+
+
         public Entity Intersection(Entity n1, Entity n2)
         {
             //123
@@ -454,6 +517,11 @@ namespace Cracking
             }
         }
 
+        public class ReturnEntity
+        {
+            public Entity Entity { get; set; }
+            public bool IsPaline { get; set; }
+        }
         #endregion
     }
 }

@@ -805,6 +805,54 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        public void IsPlineRecTest()
+        {
+            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            Assert.IsTrue(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(1);
+            Assert.IsTrue(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(1);
+            n.Append(1);
+            Assert.IsTrue(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            n.Append(1);
+            Assert.IsTrue(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            n.Append(2);
+            n.Append(1);
+            Assert.IsTrue(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            n.Append(3);
+            n.Append(4);
+            n.Append(5);
+            n.Append(4);
+            n.Append(3);
+            n.Append(2);
+            n.Append(1);
+            Assert.IsTrue(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            Assert.IsFalse(_target.IsPalinRec(n));
+
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            n.Append(3);
+            Assert.IsFalse(_target.IsPalinRec(n));
+        }
+
+
+        [TestMethod]
         public void IntersectionTest()
         {
             LinkedLists.Entity temp = new LinkedLists.Entity(1);
