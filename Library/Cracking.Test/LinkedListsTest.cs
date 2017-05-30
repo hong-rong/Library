@@ -902,6 +902,63 @@ namespace Cracking.Test
             r = _target.Intersection(n1, n2);
             Assert.IsNull(r);
         }
+
+        [TestMethod]
+        public void LoopTest()
+        {
+            LinkedLists.Entity start;
+            LinkedLists.Entity n;
+            LinkedLists.Entity r;
+
+            //11
+            n = new LinkedLists.Entity(1);
+            n.Next = n;
+            r = _target.Loop(n);
+            Assert.AreEqual(n, r);
+            Assert.AreEqual(1, r.Data);
+
+            //121
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            n.Last.Next = n;
+            r = _target.Loop(n);
+            Assert.AreEqual(n, r);
+            Assert.AreEqual(1, r.Data);
+
+            //123451
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            n.Append(3);
+            n.Append(4);
+            n.Append(5);
+            n.Last.Next = n;
+            r = _target.Loop(n);
+            Assert.AreEqual(n, r);
+            Assert.AreEqual(1, r.Data);
+
+            //12343
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            start = new LinkedLists.Entity(3);
+            n.Append(start);
+            n.Append(4);
+            n.Last.Next = start;
+            r = _target.Loop(n);
+            Assert.AreEqual(start, r);
+            Assert.AreEqual(3, r.Data);
+
+            //123453
+            n = new LinkedLists.Entity(1);
+            n.Append(2);
+            start = new LinkedLists.Entity(3);
+            n.Append(start);
+            n.Append(4);
+            n.Append(5);
+            n.Last.Next = start;
+            r = _target.Loop(n);
+            Assert.AreEqual(start, r);
+            Assert.AreEqual(3, r.Data);
+        }
         #endregion
     }
 }

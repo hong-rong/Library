@@ -445,6 +445,33 @@ namespace Cracking
             }
             throw new InvalidCastException();
         }
+
+        public Entity Loop(Entity n)
+        {
+            if (n == null || n.Next == null) return n;
+            Entity h = new Entity(0) { Next = n };
+            Entity f = n;
+            Entity s = n;
+            //12345(3)
+            while (s != null)
+            {
+                s = s.Next;
+                f = f.Next.Next;
+                if (f.Data == s.Data)
+                {
+                    s = h.Next;
+                    break;
+                }
+            }
+
+            while (f.Data != s.Data)
+            {
+                f = f.Next;
+                s = s.Next;
+            }
+
+            return f;
+        }
         #endregion
 
         #region helper
