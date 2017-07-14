@@ -63,6 +63,7 @@
     <Compile Include="Ds\St\LinearProbingHashSTTests.cs" />
     <Compile Include="Ds\St\SeperateChainingHashSTTests.cs" />
     <Compile Include="Ds\St\STTestBase.cs" />
+    <Compile Include="GaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

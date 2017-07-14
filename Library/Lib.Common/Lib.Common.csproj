@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Al\Dp\LongestIncreasingSequence.cs" />
-    <Compile Include="Al\GeneralAlgorithm.cs" />
+    <Compile Include="Al\Ga.cs" />
     <Compile Include="Al\Graph\Bfs.cs" />
     <Compile Include="Al\Graph\BfsStats.cs" />
     <Compile Include="Al\Graph\Dijkstra.cs" />
@@ -99,6 +99,7 @@
     <Compile Include="Log\IMyLog.cs" />
     <Compile Include="Log\MyLogger.cs" />
     <Compile Include="Log\MyLoggerBase.cs" />
+    <Compile Include="IvTest.cs" />
     <Compile Include="UnitTest\ExpressionTest.cs" />
     <Compile Include="UnitTest\Json\JsonTest.cs" />
     <Compile Include="UnitTest\Json\Page.cs" />

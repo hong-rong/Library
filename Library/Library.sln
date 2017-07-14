@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cracking", "Cracking\Cracki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cracking.Test", "Cracking.Test\Cracking.Test.csproj", "{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FFA53C58-9AD8-4209-B3DC-BED15D267937}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,5 +85,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{535426CE-D078-4F76-8813-F2EF4E40E3E3} = {FFA53C58-9AD8-4209-B3DC-BED15D267937}
+		{F2F20F2E-105E-4F1B-9CBF-3EAD4345BC8B} = {FFA53C58-9AD8-4209-B3DC-BED15D267937}
+		{0778A0EA-AC47-49D3-9BE5-6D3B29139ADA} = {FFA53C58-9AD8-4209-B3DC-BED15D267937}
+		{0BD7C2BF-0958-4941-8CFD-A72A57F3F17E} = {FFA53C58-9AD8-4209-B3DC-BED15D267937}
+		{FA7CEB04-E75B-4BF6-97D5-A728582DCA15} = {FFA53C58-9AD8-4209-B3DC-BED15D267937}
 	EndGlobalSection
 EndGlobal

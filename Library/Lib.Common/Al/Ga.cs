@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Lib.Common.Algorithm
+namespace Lib.Common.Al
 {
-    public class GeneralAlgorithm
+    public class Ga
     {
         public static List<List<T>> GetAllSubsets<T>(List<T> set)
         {
@@ -48,7 +48,7 @@ namespace Lib.Common.Algorithm
                 {
                     subSetPerm[j] = subSet[i].Insert(j, input[0].ToString());
                 }
-                subSetPerm[subSet[i].Length] = subSet[i] + input[0].ToString();
+                subSetPerm[subSet[i].Length] = subSet[i] + input[0];
 
                 results.AddRange(subSetPerm);
             }
