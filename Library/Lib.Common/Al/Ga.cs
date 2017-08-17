@@ -24,7 +24,7 @@ namespace Lib.Common.Al
             for (int i = 0; i < subSets.Count; i++)
             {
                 List<T> temp = new List<T>() { firstElement };
-                temp.AddRange(subSets[i]);
+                temp.AddRange(subSets[i]);//if T is object, should copy the object
 
                 allSubsets.Add(temp);
             }
