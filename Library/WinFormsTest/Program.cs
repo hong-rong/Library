@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsTest.Controller;
-using WinFormsTest.Model;
+using CSharp.WinForm.Controller;
+using CSharp.WinForm.Model;
 
-namespace WinFormsTest
+namespace CSharp.WinForm
 {
     static class Program
     {

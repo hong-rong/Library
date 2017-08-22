@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cracking.Test", "Cracking.T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FFA53C58-9AD8-4209-B3DC-BED15D267937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsTest", "WinFormsTest\WinFormsTest.csproj", "{C6A60AEB-C88D-4E8B-8848-68B981513D83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.WinForm", "WinFormsTest\CSharp.WinForm.csproj", "{C6A60AEB-C88D-4E8B-8848-68B981513D83}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestByCategory", "TestByCategory", "{AAF5478E-1A39-4A3D-A532-ACA9DC7935C1}"
 EndProject

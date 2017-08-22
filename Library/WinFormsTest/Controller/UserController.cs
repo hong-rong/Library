@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsTest.Model;
+using CSharp.WinForm.Model;
 
-namespace WinFormsTest.Controller
+namespace CSharp.WinForm.Controller
 {
     public class UserController
     {

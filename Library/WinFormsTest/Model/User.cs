@@ -1,4 +1,4 @@
-﻿namespace WinFormsTest.Model
+﻿namespace CSharp.WinForm.Model
 {
     public enum Gender
     {

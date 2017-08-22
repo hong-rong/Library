@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsTest.Controller;
-using WinFormsTest.Model;
+using CSharp.WinForm.Controller;
+using CSharp.WinForm.Model;
 
-namespace WinFormsTest
+namespace CSharp.WinForm
 {
     public partial class UserForm : Form, IUserView
     {

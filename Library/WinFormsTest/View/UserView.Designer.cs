@@ -1,4 +1,4 @@
-﻿namespace WinFormsTest
+﻿namespace CSharp.WinForm
 {
     partial class UserForm
     {
