@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CSharp.IO")]
+[assembly: AssemblyTitle("CSharp.Winform.Async")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hewlett-Packard Company")]
-[assembly: AssemblyProduct("CSharp.File")]
+[assembly: AssemblyProduct("CSharp.Winform.Async")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("479d40eb-6aed-419f-a248-df6d4b12b08f")]
+[assembly: Guid("14c0d1d8-7a74-4c57-9ec1-9af5fd3c4f99")]
 
 // Version information for an assembly consists of the following four values:
 //

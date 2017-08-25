@@ -12,6 +12,14 @@ using System.Net.NetworkInformation;
 
 namespace CSharp.Threading
 {
+    public static class TaskExtension
+    {
+        public static void HandleExceptions(this Task task)
+        {
+            task.ContinueWith(ant => Debug.WriteLine(ant.Exception.Message), TaskContinuationOptions.OnlyOnFaulted);
+        }
+    }
+
     //Threading in C#, by Joe Albahari
     [TestClass]
     public class BasicTests
