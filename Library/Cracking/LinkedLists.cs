@@ -8,10 +8,9 @@ namespace Cracking
         #region questions
         public Entity RemoveDuplicats(Entity entity)
         {
-            if (entity == null || entity.Next == null) return entity;
             HashSet<int> tab = new HashSet<int>();
-            Entity n = entity;
-            tab.Add(n.Data);
+            Entity n = new Entity(-1);
+            n.Next = entity;
             while (n.Next != null)
             {
                 if (tab.Contains(n.Next.Data))
