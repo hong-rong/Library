@@ -74,11 +74,11 @@ namespace Cracking
 
         public Node GetkElement(Node entity, int k)
         {
-            if (k < 1 && entity == null) throw new ArgumentException("invalid");
+            Node n1 = entity;
+            Node n2 = entity;
 
-            int index = 1;
-            Node n1 = entity, n2 = entity;
-            while (n1.Next != null)
+            int index = 0;
+            while (n1 != null)
             {
                 n1 = n1.Next;
                 if (index < k)
@@ -90,7 +90,7 @@ namespace Cracking
                     n2 = n2.Next;
                 }
             }
-            return index == k ? new Node(n2.Data) : null;
+            return index == k ? n2 : null;
         }
 
         public Node GetkElement_Iterative(Node entity, int k)
