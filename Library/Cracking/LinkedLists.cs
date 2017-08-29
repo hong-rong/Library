@@ -6,32 +6,53 @@ namespace Cracking
     public class LinkedLists
     {
         #region questions
-        public Entity RemoveDuplicats(Entity entity)
+        public Node RemoveDuplicats(Node entity)
         {
-            HashSet<int> tab = new HashSet<int>();
-            Entity n = new Entity(-1);
-            n.Next = entity;
-            while (n.Next != null)
+            //HashSet<int> tab = new HashSet<int>();
+            //Node n = new Node(-1);
+            //n.Next = entity;
+            //while (n.Next != null)
+            //{
+            //    if (tab.Contains(n.Next.Data))
+            //    {
+            //        n.Next = n.Next.Next;
+            //    }
+            //    else
+            //    {
+            //        tab.Add(n.Next.Data);
+            //        n = n.Next;
+            //    }
+            //}
+            //return entity;
+
+            Node current = entity;
+            Node runner = null;
+            while (current != null)
             {
-                if (tab.Contains(n.Next.Data))
+                runner = current;
+                while (runner.Next != null)
                 {
-                    n.Next = n.Next.Next;
+                    if (current.Data == runner.Next.Data)
+                    {
+                        runner.Next = runner.Next.Next;
+                    }
+                    else
+                    {
+                        runner = runner.Next;
+                    }
                 }
-                else
-                {
-                    tab.Add(n.Next.Data);
-                    n = n.Next;
-                }
+                current = current.Next;
             }
+
             return entity;
         }
 
-        public Entity GetkElement(Entity entity, int k)
+        public Node GetkElement(Node entity, int k)
         {
             if (k < 1 && entity == null) throw new ArgumentException("invalid");
 
             int index = 1;
-            Entity n1 = entity, n2 = entity;
+            Node n1 = entity, n2 = entity;
             while (n1.Next != null)
             {
                 n1 = n1.Next;
@@ -44,31 +65,31 @@ namespace Cracking
                     n2 = n2.Next;
                 }
             }
-            return index == k ? new Entity(n2.Data) : null;
+            return index == k ? new Node(n2.Data) : null;
         }
 
-        public Entity GetkElement_Iterative(Entity entity, int k)
+        public Node GetkElement_Iterative(Node entity, int k)
         {
             if (k < 1 && entity == null) throw new ArgumentException("invalid");
             int count = 1;
             return MoveAndCount(entity, k, ref count);
         }
 
-        private Entity MoveAndCount(Entity entity, int k, ref int count)
+        private Node MoveAndCount(Node entity, int k, ref int count)
         {
             if (entity.Next != null)
             {
                 MoveAndCount(entity.Next, k, ref count);
-                if (count == k) return new Entity(entity.Data);
+                if (count == k) return new Node(entity.Data);
                 count++;
                 return null;
             }
-            if (count == k) return new Entity(entity.Data);
+            if (count == k) return new Node(entity.Data);
             return null;
         }
 
         //assume can't access entity, here just for testing purpose
-        public bool DeleteMiddle(Entity entity, Entity middle)
+        public bool DeleteMiddle(Node entity, Node middle)
         {
             if (middle == null || middle.Next == null) return false;
             middle.Data = middle.Next.Data;
@@ -76,15 +97,15 @@ namespace Cracking
             return true;
         }
 
-        public Entity Partition(Entity entity, int p)
+        public Node Partition(Node entity, int p)
         {
             if (entity == null || entity.Next == null) return entity;
 
-            Entity rp = new Entity(0);
-            Entity rh = rp;
+            Node rp = new Node(0);
+            Node rh = rp;
 
-            Entity lp = new Entity(0);
-            Entity lh = new Entity(0);
+            Node lp = new Node(0);
+            Node lh = new Node(0);
             lp.Next = entity;
             lh.Next = entity;
             while (lh.Next != null)
@@ -115,12 +136,12 @@ namespace Cracking
             return lh;
         }
 
-        public Entity SumReverseOrder(Entity n1, Entity n2)
+        public Node SumReverseOrder(Node n1, Node n2)
         {
             if (n1 == null || n2 == null) throw new ArgumentNullException("n1 or n2 is null");
-            Entity n1p = new Entity(0);
+            Node n1p = new Node(0);
             n1p.Next = n1;
-            Entity n2p = new Entity(0);
+            Node n2p = new Node(0);
             n2p.Next = n2;
             //1
             //9
@@ -156,7 +177,7 @@ namespace Cracking
                 }
                 else if (n1p.Next == null && n2p.Next != null)
                 {
-                    n1p.Next = new Entity(d);
+                    n1p.Next = new Node(d);
                     n1p = n1p.Next;
                     n2p = n2p.Next;
                 }
@@ -164,7 +185,7 @@ namespace Cracking
                 {
                     if (d != 0 || overflow != 0)
                     {
-                        n1p.Next = new Entity(d);
+                        n1p.Next = new Node(d);
                         n1p = n1p.Next;
                     }
                     else
@@ -179,18 +200,18 @@ namespace Cracking
             }
             return n1;
         }
-        public Entity SumForwardOrder(Entity n1, Entity n2)
+        public Node SumForwardOrder(Node n1, Node n2)
         {
             var sum = SumReverseOrder(Reverse(n1), Reverse(n2));
             return Reverse(sum);
         }
 
-        public Entity Reverse(Entity entity)
+        public Node Reverse(Node entity)
         {
             //1->2->3
             if (entity == null || entity.Next == null) return entity;
-            Entity n = new Entity(0);
-            Entity p = new Entity(0);
+            Node n = new Node(0);
+            Node p = new Node(0);
             n.Next = entity.Next;
             p.Next = entity;
             entity.Next = null;
@@ -203,18 +224,18 @@ namespace Cracking
             }
             return p.Next;
         }
-        public Entity SumReverseOrderRec(Entity n1, Entity n2)
+        public Node SumReverseOrderRec(Node n1, Node n2)
         {
             return SumReverseOrderRec(n1, n2, 0);
         }
-        private Entity SumReverseOrderRec(Entity n1, Entity n2, int carry)
+        private Node SumReverseOrderRec(Node n1, Node n2, int carry)
         {
             if (n1 == null && n2 == null && carry == 0) return null;
             int d = 0;
             if (n1 != null) d = d + n1.Data;
             if (n2 != null) d = d + n2.Data;
             if (carry != 0) d = d + carry;
-            Entity n = new Entity(d % 10);
+            Node n = new Node(d % 10);
             carry = d >= 10 ? 1 : 0;
 
             var next = SumReverseOrderRec(n1 == null ? null : n1.Next, n2 == null ? null : n2.Next, carry);
@@ -223,7 +244,7 @@ namespace Cracking
             return n;
         }
 
-        public Entity SumForwardOrderRec(Entity n1, Entity n2)
+        public Node SumForwardOrderRec(Node n1, Node n2)
         {
             var p1 = Reverse(n1);
             var p2 = Reverse(n2);
@@ -231,13 +252,13 @@ namespace Cracking
             return Reverse(n);
         }
 
-        public bool IsPalin(Entity n)
+        public bool IsPalin(Node n)
         {
             if (n == null || n.Next == null) return true;
             var r = ReverseAndCopy(n);
-            Entity one = new Entity(0);
+            Node one = new Node(0);
             one.Next = n;
-            Entity two = new Entity(0);
+            Node two = new Node(0);
             two.Next = r;
             while (one.Next != null && two.Next != null)
             {
@@ -247,15 +268,15 @@ namespace Cracking
             }
             return one.Next == null && two.Next == null;
         }
-        public Entity ReverseAndCopy(Entity n)
+        public Node ReverseAndCopy(Node n)
         {
             if (n == null || n.Next == null) return n;
-            Entity p = new Entity(0);
-            Entity h = new Entity(0);
+            Node p = new Node(0);
+            Node h = new Node(0);
             p.Next = n;
             while (p.Next != null)
             {
-                var t = new Entity(p.Next.Data);
+                var t = new Node(p.Next.Data);
                 t.Next = h.Next;
                 h.Next = t;
                 p.Next = p.Next.Next;
@@ -263,16 +284,16 @@ namespace Cracking
             return h.Next;
         }
 
-        public bool IsPalinIterativeStack(Entity n)
+        public bool IsPalinIterativeStack(Node n)
         {
             if (n == null) throw new ArgumentNullException();
             if (n.Next == null) return true;
-            Entity s = new Entity(0);
+            Node s = new Node(0);
             s.Next = n;
-            Entity f = new Entity(0);
+            Node f = new Node(0);
             f.Next = n;
             int index = 0;
-            Stack<Entity> st = new Stack<Entity>(16);
+            Stack<Node> st = new Stack<Node>(16);
             st.Push(s.Next);
             //1 1
             //1 2 1
@@ -305,12 +326,12 @@ namespace Cracking
             return true;
         }
 
-        public bool IsPalinIterativeStackRefined(Entity n)
+        public bool IsPalinIterativeStackRefined(Node n)
         {
             if (n == null) throw new ArgumentNullException();
             if (n.Next == null) return true;
-            Entity s = n;
-            Entity f = n;
+            Node s = n;
+            Node f = n;
             Stack<int> st = new Stack<int>(16);
             //1 1
             //1 2 1
@@ -339,19 +360,19 @@ namespace Cracking
 
         #region IsPalinRec
 
-        public bool IsPalinRec(Entity n)
+        public bool IsPalinRec(Node n)
         {
             if (n == null) throw new ArgumentNullException();
             if (n.Next == null) return true;
 
             int length = CountLength(n);
 
-            Entity t = n;
+            Node t = n;
             //1 2 2 1
             return IsPalin(t, length).IsPaline;
         }
 
-        private ReturnEntity IsPalin(Entity n, int length)
+        private ReturnEntity IsPalin(Node n, int length)
         {
             //if (n == null || length == 0)
             if (length == 0)
@@ -384,10 +405,10 @@ namespace Cracking
             return returnNode;
         }
 
-        private static int CountLength(Entity n)
+        private static int CountLength(Node n)
         {
             int length = 0;
-            Entity t = n;
+            Node t = n;
             while (t != null)
             {
                 length++;
@@ -399,13 +420,13 @@ namespace Cracking
         #endregion
 
 
-        public Entity Intersection(Entity n1, Entity n2)
+        public Node Intersection(Node n1, Node n2)
         {
             //123
             //23
             if (n1 == null || n2 == null) return null;
-            Entity l = n1;
-            Entity s = n2;
+            Node l = n1;
+            Node s = n2;
             int len1 = 1;
             int len2 = 1;
             int dat;
@@ -445,12 +466,12 @@ namespace Cracking
             throw new InvalidCastException();
         }
 
-        public Entity Loop(Entity n)
+        public Node Loop(Node n)
         {
             if (n == null || n.Next == null) return n;
-            Entity h = new Entity(0) { Next = n };
-            Entity f = n;
-            Entity s = n;
+            Node h = new Node(0) { Next = n };
+            Node f = n;
+            Node s = n;
             //12345(3)
             while (s != null)
             {
@@ -474,21 +495,21 @@ namespace Cracking
         #endregion
 
         #region helper
-        public class Entity
+        public class Node
         {
-            public Entity(int d)
+            public Node(int d)
             {
                 Data = d;
             }
 
             public int Data { get; set; }
-            public Entity Next { get; set; }
+            public Node Next { get; set; }
 
             //append to tail
             public void Append(int d)
             {
-                Entity end = new Entity(d);
-                Entity n = this;
+                Node end = new Node(d);
+                Node n = this;
                 while (n.Next != null)
                 {
                     n = n.Next;
@@ -496,10 +517,10 @@ namespace Cracking
                 n.Next = end;
             }
 
-            public void Append(Entity entity)
+            public void Append(Node entity)
             {
                 if (entity == null) throw new ArgumentNullException("entity");
-                Entity n = this;
+                Node n = this;
                 while (n.Next != null)
                 {
                     n = n.Next;
@@ -507,12 +528,12 @@ namespace Cracking
                 n.Next = entity;
             }
 
-            public Entity Last
+            public Node Last
             {
                 get
                 {
                     if (this == null) throw new InvalidOperationException("entity is null");
-                    Entity n = this;
+                    Node n = this;
                     while (n.Next != null)
                     {
                         n = n.Next;
@@ -521,9 +542,9 @@ namespace Cracking
                 }
             }
 
-            public Entity Delete(Entity header, int d)
+            public Node Delete(Node header, int d)
             {
-                Entity n = header;
+                Node n = header;
                 if (n.Data == d)
                 {
                     return n.Next;
@@ -545,7 +566,7 @@ namespace Cracking
 
         public class ReturnEntity
         {
-            public Entity Entity { get; set; }
+            public Node Entity { get; set; }
             public bool IsPaline { get; set; }
         }
         #endregion

@@ -19,7 +19,7 @@ namespace Cracking.Test
         [TestMethod]
         public void RemoveDuplicates_NoDuplicats_Test()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             entity.Append(2);
             entity.Append(3);
             entity.Append(4);
@@ -35,7 +35,7 @@ namespace Cracking.Test
         [TestMethod]
         public void RemoveDuplicates_TwoElementsOneDuplicat_Test()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             entity.Append(1);
             _target.RemoveDuplicats(entity);
             int index = 0;
@@ -48,7 +48,7 @@ namespace Cracking.Test
         [TestMethod]
         public void RemoveDuplicates_MultipleElementsOneDuplicat_Test()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             entity.Append(2);
             entity.Append(3);
             entity.Append(4);
@@ -65,7 +65,7 @@ namespace Cracking.Test
         [TestMethod]
         public void RemoveDuplicates_MultipleElementsMultipleDuplicats_Test()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             entity.Append(1);
             entity.Append(2);
             entity.Append(2);
@@ -86,7 +86,7 @@ namespace Cracking.Test
         [TestMethod]
         public void RemoveDuplicates_AllDuplicats_Test()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             entity.Append(1);
             entity.Append(1);
             entity.Append(1);
@@ -106,10 +106,10 @@ namespace Cracking.Test
         [TestMethod]
         public void GetkElementTest()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             Assert.AreEqual(1, _target.GetkElement(entity, 1).Data);
 
-            entity = new LinkedLists.Entity(1);
+            entity = new LinkedLists.Node(1);
             entity.Append(2);
             entity.Append(3);
             entity.Append(4);
@@ -125,10 +125,10 @@ namespace Cracking.Test
         [TestMethod]
         public void GetkElement_Iterative_Test()
         {
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
             Assert.AreEqual(1, _target.GetkElement_Iterative(entity, 1).Data);
 
-            entity = new LinkedLists.Entity(1);
+            entity = new LinkedLists.Node(1);
             entity.Append(2);
             entity.Append(3);
             entity.Append(4);
@@ -145,16 +145,16 @@ namespace Cracking.Test
         [TestMethod]
         public void DeleteMiddle_Test()
         {
-            LinkedLists.Entity middle = new LinkedLists.Entity(3);
-            LinkedLists.Entity entity = new LinkedLists.Entity(1);
-            entity.Append(new LinkedLists.Entity(2));
+            LinkedLists.Node middle = new LinkedLists.Node(3);
+            LinkedLists.Node entity = new LinkedLists.Node(1);
+            entity.Append(new LinkedLists.Node(2));
             entity.Append(middle);
-            entity.Append(new LinkedLists.Entity(4));
-            entity.Append(new LinkedLists.Entity(5));
+            entity.Append(new LinkedLists.Node(4));
+            entity.Append(new LinkedLists.Node(5));
             Assert.IsTrue(_target.DeleteMiddle(entity, middle));
 
             int index = 0;
-            LinkedLists.Entity temp = entity;
+            LinkedLists.Node temp = entity;
             while (temp != null)
             {
                 if (index == 2)
@@ -170,8 +170,8 @@ namespace Cracking.Test
         [TestMethod]
         public void PartitionTest()
         {
-            LinkedLists.Entity n;
-            LinkedLists.Entity entity = new LinkedLists.Entity(2);
+            LinkedLists.Node n;
+            LinkedLists.Node entity = new LinkedLists.Node(2);
             entity.Append(1);
             n = _target.Partition(entity, 2);
             Assert.AreEqual(1, n.Data);
@@ -180,7 +180,7 @@ namespace Cracking.Test
             n = n.Next;
             Assert.IsNull(n);
 
-            entity = new LinkedLists.Entity(5);
+            entity = new LinkedLists.Node(5);
             entity.Append(4);
             entity.Append(3);
             entity.Append(2);
@@ -198,7 +198,7 @@ namespace Cracking.Test
             n = n.Next;
             Assert.IsNull(n);
 
-            entity = new LinkedLists.Entity(1);
+            entity = new LinkedLists.Node(1);
             entity.Append(2);
             entity.Append(3);
             entity.Append(4);
@@ -222,16 +222,16 @@ namespace Cracking.Test
         {
             //1
             //2
-            LinkedLists.Entity n1 = new LinkedLists.Entity(1);
-            LinkedLists.Entity n2 = new LinkedLists.Entity(2);
+            LinkedLists.Node n1 = new LinkedLists.Node(1);
+            LinkedLists.Node n2 = new LinkedLists.Node(2);
             var n = _target.SumReverseOrder(n1, n2);
             Assert.AreEqual(3, n.Data);
             Assert.IsNull(n.Next);
 
             //1
             //9
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n = _target.SumReverseOrder(n1, n2);
             Assert.AreEqual(0, n.Data);
             n = n.Next;
@@ -240,10 +240,10 @@ namespace Cracking.Test
 
             //716
             //592
-            n1 = new LinkedLists.Entity(7);
+            n1 = new LinkedLists.Node(7);
             n1.Append(1);
             n1.Append(6);
-            n2 = new LinkedLists.Entity(5);
+            n2 = new LinkedLists.Node(5);
             n2.Append(9);
             n2.Append(2);
             n = _target.SumReverseOrder(n1, n2);
@@ -256,10 +256,10 @@ namespace Cracking.Test
 
             //516
             //583
-            n1 = new LinkedLists.Entity(5);
+            n1 = new LinkedLists.Node(5);
             n1.Append(1);
             n1.Append(6);
-            n2 = new LinkedLists.Entity(5);
+            n2 = new LinkedLists.Node(5);
             n2.Append(8);
             n2.Append(3);
             n = _target.SumReverseOrder(n1, n2);
@@ -274,8 +274,8 @@ namespace Cracking.Test
 
             //1
             //999
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n2.Append(9);
             n2.Append(9);
             n = _target.SumReverseOrder(n1, n2);
@@ -290,10 +290,10 @@ namespace Cracking.Test
 
             //999
             //1
-            n1 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(9);
             n1.Append(9);
             n1.Append(9);
-            n2 = new LinkedLists.Entity(1);
+            n2 = new LinkedLists.Node(1);
             n = _target.SumReverseOrder(n1, n2);
             Assert.AreEqual(0, n.Data);
             n = n.Next;
@@ -306,10 +306,10 @@ namespace Cracking.Test
 
             //879
             //586
-            n1 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(9);
             n1.Append(7);
             n1.Append(8);
-            n2 = new LinkedLists.Entity(6);
+            n2 = new LinkedLists.Node(6);
             n2.Append(8);
             n2.Append(5);
             n = _target.SumReverseOrder(n1, n2);
@@ -326,7 +326,7 @@ namespace Cracking.Test
         [TestMethod]
         public void ReverseTest()
         {
-            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            LinkedLists.Node n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             var actual = _target.Reverse(n);
@@ -343,16 +343,16 @@ namespace Cracking.Test
         {
             //1
             //2
-            LinkedLists.Entity n1 = new LinkedLists.Entity(1);
-            LinkedLists.Entity n2 = new LinkedLists.Entity(2);
+            LinkedLists.Node n1 = new LinkedLists.Node(1);
+            LinkedLists.Node n2 = new LinkedLists.Node(2);
             var n = _target.SumForwardOrder(n1, n2);
             Assert.AreEqual(3, n.Data);
             Assert.IsNull(n.Next);
 
             //1
             //9
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n = _target.SumForwardOrder(n1, n2);
             Assert.AreEqual(1, n.Data);
             n = n.Next;
@@ -361,10 +361,10 @@ namespace Cracking.Test
 
             //716
             //592
-            n1 = new LinkedLists.Entity(6);
+            n1 = new LinkedLists.Node(6);
             n1.Append(1);
             n1.Append(7);
-            n2 = new LinkedLists.Entity(2);
+            n2 = new LinkedLists.Node(2);
             n2.Append(9);
             n2.Append(5);
             n = _target.SumForwardOrder(n1, n2);
@@ -377,10 +377,10 @@ namespace Cracking.Test
 
             //516
             //583
-            n1 = new LinkedLists.Entity(6);
+            n1 = new LinkedLists.Node(6);
             n1.Append(1);
             n1.Append(5);
-            n2 = new LinkedLists.Entity(3);
+            n2 = new LinkedLists.Node(3);
             n2.Append(8);
             n2.Append(5);
             n = _target.SumForwardOrder(n1, n2);
@@ -395,8 +395,8 @@ namespace Cracking.Test
 
             //1
             //999
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n2.Append(9);
             n2.Append(9);
             n = _target.SumForwardOrder(n1, n2);
@@ -411,10 +411,10 @@ namespace Cracking.Test
 
             //999
             //1
-            n1 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(9);
             n1.Append(9);
             n1.Append(9);
-            n2 = new LinkedLists.Entity(1);
+            n2 = new LinkedLists.Node(1);
             n = _target.SumForwardOrder(n1, n2);
             Assert.AreEqual(1, n.Data);
             n = n.Next;
@@ -427,10 +427,10 @@ namespace Cracking.Test
 
             //879
             //586
-            n1 = new LinkedLists.Entity(8);
+            n1 = new LinkedLists.Node(8);
             n1.Append(7);
             n1.Append(9);
-            n2 = new LinkedLists.Entity(5);
+            n2 = new LinkedLists.Node(5);
             n2.Append(8);
             n2.Append(6);
             n = _target.SumForwardOrder(n1, n2);
@@ -449,16 +449,16 @@ namespace Cracking.Test
         {
             //1
             //2
-            LinkedLists.Entity n1 = new LinkedLists.Entity(1);
-            LinkedLists.Entity n2 = new LinkedLists.Entity(2);
+            LinkedLists.Node n1 = new LinkedLists.Node(1);
+            LinkedLists.Node n2 = new LinkedLists.Node(2);
             var n = _target.SumReverseOrderRec(n1, n2);
             Assert.AreEqual(3, n.Data);
             Assert.IsNull(n.Next);
 
             //1
             //9
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n = _target.SumReverseOrderRec(n1, n2);
             Assert.AreEqual(0, n.Data);
             n = n.Next;
@@ -467,10 +467,10 @@ namespace Cracking.Test
 
             //716
             //592
-            n1 = new LinkedLists.Entity(7);
+            n1 = new LinkedLists.Node(7);
             n1.Append(1);
             n1.Append(6);
-            n2 = new LinkedLists.Entity(5);
+            n2 = new LinkedLists.Node(5);
             n2.Append(9);
             n2.Append(2);
             n = _target.SumReverseOrderRec(n1, n2);
@@ -483,10 +483,10 @@ namespace Cracking.Test
 
             //516
             //583
-            n1 = new LinkedLists.Entity(5);
+            n1 = new LinkedLists.Node(5);
             n1.Append(1);
             n1.Append(6);
-            n2 = new LinkedLists.Entity(5);
+            n2 = new LinkedLists.Node(5);
             n2.Append(8);
             n2.Append(3);
             n = _target.SumReverseOrderRec(n1, n2);
@@ -501,8 +501,8 @@ namespace Cracking.Test
 
             //1
             //999
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n2.Append(9);
             n2.Append(9);
             n = _target.SumReverseOrderRec(n1, n2);
@@ -517,10 +517,10 @@ namespace Cracking.Test
 
             //999
             //1
-            n1 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(9);
             n1.Append(9);
             n1.Append(9);
-            n2 = new LinkedLists.Entity(1);
+            n2 = new LinkedLists.Node(1);
             n = _target.SumReverseOrderRec(n1, n2);
             Assert.AreEqual(0, n.Data);
             n = n.Next;
@@ -533,10 +533,10 @@ namespace Cracking.Test
 
             //879
             //586
-            n1 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(9);
             n1.Append(7);
             n1.Append(8);
-            n2 = new LinkedLists.Entity(6);
+            n2 = new LinkedLists.Node(6);
             n2.Append(8);
             n2.Append(5);
             n = _target.SumReverseOrderRec(n1, n2);
@@ -556,16 +556,16 @@ namespace Cracking.Test
         {
             //1
             //2
-            LinkedLists.Entity n1 = new LinkedLists.Entity(1);
-            LinkedLists.Entity n2 = new LinkedLists.Entity(2);
+            LinkedLists.Node n1 = new LinkedLists.Node(1);
+            LinkedLists.Node n2 = new LinkedLists.Node(2);
             var n = _target.SumForwardOrderRec(n1, n2);
             Assert.AreEqual(3, n.Data);
             Assert.IsNull(n.Next);
 
             //1
             //9
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n = _target.SumForwardOrderRec(n1, n2);
             Assert.AreEqual(1, n.Data);
             n = n.Next;
@@ -574,10 +574,10 @@ namespace Cracking.Test
 
             //716
             //592
-            n1 = new LinkedLists.Entity(6);
+            n1 = new LinkedLists.Node(6);
             n1.Append(1);
             n1.Append(7);
-            n2 = new LinkedLists.Entity(2);
+            n2 = new LinkedLists.Node(2);
             n2.Append(9);
             n2.Append(5);
             n = _target.SumForwardOrderRec(n1, n2);
@@ -590,10 +590,10 @@ namespace Cracking.Test
 
             //516
             //583
-            n1 = new LinkedLists.Entity(6);
+            n1 = new LinkedLists.Node(6);
             n1.Append(1);
             n1.Append(5);
-            n2 = new LinkedLists.Entity(3);
+            n2 = new LinkedLists.Node(3);
             n2.Append(8);
             n2.Append(5);
             n = _target.SumForwardOrderRec(n1, n2);
@@ -608,8 +608,8 @@ namespace Cracking.Test
 
             //1
             //999
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(9);
             n2.Append(9);
             n2.Append(9);
             n = _target.SumForwardOrderRec(n1, n2);
@@ -624,10 +624,10 @@ namespace Cracking.Test
 
             //999
             //1
-            n1 = new LinkedLists.Entity(9);
+            n1 = new LinkedLists.Node(9);
             n1.Append(9);
             n1.Append(9);
-            n2 = new LinkedLists.Entity(1);
+            n2 = new LinkedLists.Node(1);
             n = _target.SumForwardOrderRec(n1, n2);
             Assert.AreEqual(1, n.Data);
             n = n.Next;
@@ -640,10 +640,10 @@ namespace Cracking.Test
 
             //879
             //586
-            n1 = new LinkedLists.Entity(8);
+            n1 = new LinkedLists.Node(8);
             n1.Append(7);
             n1.Append(9);
-            n2 = new LinkedLists.Entity(5);
+            n2 = new LinkedLists.Node(5);
             n2.Append(8);
             n2.Append(6);
             n = _target.SumForwardOrderRec(n1, n2);
@@ -661,7 +661,7 @@ namespace Cracking.Test
         [TestMethod]
         public void ReverseAndCopyTest()
         {
-            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            LinkedLists.Node n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             n.Append(4);
@@ -678,26 +678,26 @@ namespace Cracking.Test
         [TestMethod]
         public void IsPalinTest()
         {
-            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            LinkedLists.Node n = new LinkedLists.Node(1);
             Assert.IsTrue(_target.IsPalin(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(1);
             n.Append(1);
             Assert.IsTrue(_target.IsPalin(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalin(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalin(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             n.Append(4);
@@ -708,11 +708,11 @@ namespace Cracking.Test
             n.Append(1);
             Assert.IsTrue(_target.IsPalin(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             Assert.IsFalse(_target.IsPalin(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             Assert.IsFalse(_target.IsPalin(n));
@@ -721,26 +721,26 @@ namespace Cracking.Test
         [TestMethod]
         public void IsPalinIterativeStackTest()
         {
-            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            LinkedLists.Node n = new LinkedLists.Node(1);
             Assert.IsTrue(_target.IsPalinIterativeStack(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(1);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStack(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStack(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStack(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             n.Append(4);
@@ -751,11 +751,11 @@ namespace Cracking.Test
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStack(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             Assert.IsFalse(_target.IsPalinIterativeStack(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             Assert.IsFalse(_target.IsPalinIterativeStack(n));
@@ -764,26 +764,26 @@ namespace Cracking.Test
         [TestMethod]
         public void IsPalinIterativeStackRefinedTest()
         {
-            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            LinkedLists.Node n = new LinkedLists.Node(1);
             Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(1);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             n.Append(4);
@@ -794,11 +794,11 @@ namespace Cracking.Test
             n.Append(1);
             Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             Assert.IsFalse(_target.IsPalinIterativeStackRefined(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             Assert.IsFalse(_target.IsPalinIterativeStackRefined(n));
@@ -807,30 +807,30 @@ namespace Cracking.Test
         [TestMethod]
         public void IsPlineRecTest()
         {
-            LinkedLists.Entity n = new LinkedLists.Entity(1);
+            LinkedLists.Node n = new LinkedLists.Node(1);
             Assert.IsTrue(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(1);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(2);
             n.Append(1);
             Assert.IsTrue(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             n.Append(4);
@@ -841,11 +841,11 @@ namespace Cracking.Test
             n.Append(1);
             Assert.IsTrue(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             Assert.IsFalse(_target.IsPalinRec(n));
 
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             Assert.IsFalse(_target.IsPalinRec(n));
@@ -855,25 +855,25 @@ namespace Cracking.Test
         [TestMethod]
         public void IntersectionTest()
         {
-            LinkedLists.Entity temp = new LinkedLists.Entity(1);
-            LinkedLists.Entity n1 = temp;
-            LinkedLists.Entity n2 = temp;
+            LinkedLists.Node temp = new LinkedLists.Node(1);
+            LinkedLists.Node n1 = temp;
+            LinkedLists.Node n2 = temp;
             var r = _target.Intersection(n1, n2);
             Assert.AreEqual(temp, r);
             Assert.AreEqual(1, r.Data);
 
-            n1 = new LinkedLists.Entity(1);
+            n1 = new LinkedLists.Node(1);
             n1.Append(2);
-            temp = new LinkedLists.Entity(3);
+            temp = new LinkedLists.Node(3);
             n1.Append(temp);
             n2 = temp;
             r = _target.Intersection(n1, n2);
             Assert.AreEqual(temp, r);
             Assert.AreEqual(3, r.Data);
 
-            n1 = new LinkedLists.Entity(1);
-            n2 = new LinkedLists.Entity(1);
-            temp = new LinkedLists.Entity(2);
+            n1 = new LinkedLists.Node(1);
+            n2 = new LinkedLists.Node(1);
+            temp = new LinkedLists.Node(2);
             n1.Append(temp);
             n2.Append(temp);
             temp.Append(3);
@@ -881,10 +881,10 @@ namespace Cracking.Test
             Assert.AreEqual(temp, r);
             Assert.AreEqual(2, r.Data);
 
-            n1 = new LinkedLists.Entity(1);
+            n1 = new LinkedLists.Node(1);
             n1.Append(2);
-            n2 = new LinkedLists.Entity(1);
-            temp = new LinkedLists.Entity(3);
+            n2 = new LinkedLists.Node(1);
+            temp = new LinkedLists.Node(3);
             n1.Append(temp);
             n2.Append(temp);
             temp.Append(4);
@@ -892,7 +892,7 @@ namespace Cracking.Test
             Assert.AreEqual(temp, r);
             Assert.AreEqual(3, r.Data);
 
-            n1 = new LinkedLists.Entity(1);
+            n1 = new LinkedLists.Node(1);
             n1.Append(2);
             n1.Append(3);
             n1.Append(4);
@@ -906,19 +906,19 @@ namespace Cracking.Test
         [TestMethod]
         public void LoopTest()
         {
-            LinkedLists.Entity start;
-            LinkedLists.Entity n;
-            LinkedLists.Entity r;
+            LinkedLists.Node start;
+            LinkedLists.Node n;
+            LinkedLists.Node r;
 
             //11
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Next = n;
             r = _target.Loop(n);
             Assert.AreEqual(n, r);
             Assert.AreEqual(1, r.Data);
 
             //121
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Last.Next = n;
             r = _target.Loop(n);
@@ -926,7 +926,7 @@ namespace Cracking.Test
             Assert.AreEqual(1, r.Data);
 
             //123451
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
             n.Append(3);
             n.Append(4);
@@ -937,9 +937,9 @@ namespace Cracking.Test
             Assert.AreEqual(1, r.Data);
 
             //12343
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
-            start = new LinkedLists.Entity(3);
+            start = new LinkedLists.Node(3);
             n.Append(start);
             n.Append(4);
             n.Last.Next = start;
@@ -948,9 +948,9 @@ namespace Cracking.Test
             Assert.AreEqual(3, r.Data);
 
             //123453
-            n = new LinkedLists.Entity(1);
+            n = new LinkedLists.Node(1);
             n.Append(2);
-            start = new LinkedLists.Entity(3);
+            start = new LinkedLists.Node(3);
             n.Append(start);
             n.Append(4);
             n.Append(5);
