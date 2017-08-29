@@ -6,45 +6,70 @@ namespace Cracking
     public class LinkedLists
     {
         #region questions
-        public Node RemoveDuplicats(Node entity)
+        public Node RemoveDuplicats(Node n)
         {
             //HashSet<int> tab = new HashSet<int>();
-            //Node n = new Node(-1);
-            //n.Next = entity;
-            //while (n.Next != null)
+            //Node current = new Node(-1);
+            //current.Next = n;
+            //while (current.Next != null)
             //{
-            //    if (tab.Contains(n.Next.Data))
+            //    if (tab.Contains(current.Next.Data))
             //    {
-            //        n.Next = n.Next.Next;
+            //        current.Next = current.Next.Next;
             //    }
             //    else
             //    {
-            //        tab.Add(n.Next.Data);
-            //        n = n.Next;
+            //        tab.Add(current.Next.Data);
+            //        current = current.Next;
             //    }
             //}
-            //return entity;
+            //return n;
 
-            Node current = entity;
-            Node runner = null;
+
+            Node current = null;
+            Node previous = null;
+            System.Collections.Generic.HashSet<int> table = new
+                System.Collections.Generic.HashSet<int>();
+
+            current = n;
             while (current != null)
             {
-                runner = current;
-                while (runner.Next != null)
+                if (table.Contains(current.Data))
                 {
-                    if (current.Data == runner.Next.Data)
-                    {
-                        runner.Next = runner.Next.Next;
-                    }
-                    else
-                    {
-                        runner = runner.Next;
-                    }
+                    previous.Next = current.Next;
+                }
+                else
+                {
+                    table.Add(current.Data);
+                    previous = current;
                 }
                 current = current.Next;
             }
 
-            return entity;
+            return n;
+
+
+            //Node current = n;
+            //Node runner = null;
+
+            //while (current != null)
+            //{
+            //    runner = current;
+            //    while (runner.Next != null)
+            //    {
+            //        if (current.Data == runner.Next.Data)
+            //        {
+            //            runner.Next = runner.Next.Next;
+            //        }
+            //        else
+            //        {
+            //            runner = runner.Next;
+            //        }
+            //    }
+            //    current = current.Next;
+            //}
+
+            //return n;
         }
 
         public Node GetkElement(Node entity, int k)
