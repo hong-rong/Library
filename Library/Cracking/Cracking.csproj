@@ -41,10 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArraysAndStrings.cs" />
+    <Compile Include="Dp.cs" />
     <Compile Include="LinkedLists.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StackAndQueue.cs" />
-    <Compile Include="TreeAndDp.cs" />
+    <Compile Include="Tr.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
