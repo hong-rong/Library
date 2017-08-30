@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Cracking
 {
-    public class TreeAndDp
+    public class Tree
     {
         #region test
         public bool HasRoute(N s, N e)
