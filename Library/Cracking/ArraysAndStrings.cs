@@ -56,7 +56,7 @@ namespace Cracking
             for (var j = 0; j < s2.Length; j++)
             {
                 count[s2[j]]--;
-                if (count[s2[j]] < 0) return false;
+                if (count[s2[j]] != 0) return false;
             }
             return true;
         }
