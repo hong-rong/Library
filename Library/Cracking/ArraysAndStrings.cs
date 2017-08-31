@@ -109,9 +109,10 @@ namespace Cracking
             var vector = 0;
             for (var i = 0; i < s.Length; i++)
             {
-                if (s[i] >= 'A' && s[i] <= 'z')
+                //if (s[i] >= 'A' && s[i] <= 'z')//can't check 'A' to 'z', will overflow when rigth shifting
+                if (s[i] >= 'a' && s[i] <= 'z')
                 {
-                    var mask = 1 << (s[i] - 'A');
+                    var mask = 1 << (s[i] - 'a');
                     if ((vector & mask) == 0)
                         vector = vector | mask;
                     else
