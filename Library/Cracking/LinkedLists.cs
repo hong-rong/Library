@@ -195,6 +195,7 @@ namespace Cracking
 
             return n1;
         }
+
         public Node SumForwardOrder(Node n1, Node n2)
         {
             var sum = SumReverseOrder(Reverse(n1), Reverse(n2));
@@ -221,21 +222,24 @@ namespace Cracking
         }
         public Node SumReverseOrderRec(Node n1, Node n2)
         {
-            return SumReverseOrderRec(n1, n2, 0);
+            return SumReverseOrderRec(n1, n2, false);
         }
-        private Node SumReverseOrderRec(Node n1, Node n2, int carry)
+        private Node SumReverseOrderRec(Node n1, Node n2, bool carry)
         {
-            if (n1 == null && n2 == null && carry == 0) return null;
-            int d = 0;
-            if (n1 != null) d = d + n1.Data;
-            if (n2 != null) d = d + n2.Data;
-            if (carry != 0) d = d + carry;
-            Node n = new Node(d % 10);
-            carry = d >= 10 ? 1 : 0;
+            if (n1 == null && n2 == null && !carry) return null;
 
-            var next = SumReverseOrderRec(n1 == null ? null : n1.Next, n2 == null ? null : n2.Next, carry);
-            n.Next = next;
-
+            int d = (n1 == null ? 0 : n1.Data) + (n2 == null ? 0 : n2.Data) + (carry ? 1 : 0);
+            if (d >= 10)
+            {
+                d = d - 10;
+                carry = true;
+            }
+            else
+            {
+                carry = false;
+            }
+            Node n = new Node(d);
+            n.Next = SumReverseOrderRec(n1 == null ? null : n1.Next, n2 == null ? null : n2.Next, carry);
             return n;
         }
 
