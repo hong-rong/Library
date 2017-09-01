@@ -151,66 +151,48 @@ namespace Cracking
 
         public Node SumReverseOrder(Node n1, Node n2)
         {
-            if (n1 == null || n2 == null) throw new ArgumentNullException("n1 or n2 is null");
-            Node n1p = new Node(0);
-            n1p.Next = n1;
-            Node n2p = new Node(0);
-            n2p.Next = n2;
-            //1
-            //9
-            sbyte overflow = 0;
-            int d;
-            while (true)
+            if (n1 == null) return n2;
+            if (n2 == null) return n1;
+
+            Node np1 = new Node(-1);
+            Node np2 = new Node(-1);
+            np1.Next = n1;
+            np2.Next = n2;
+
+            bool c = false;
+            while (np1.Next != null || np2.Next != null)
             {
-                d = (n1p.Next != null ? n1p.Next.Data : 0) + (n2p.Next != null ? n2p.Next.Data : 0) + overflow;
+                int d = (np1.Next == null ? 0 : np1.Next.Data) + (np2.Next == null ? 0 : np2.Next.Data) + (c ? 1 : 0);
                 if (d >= 10)
                 {
+                    c = true;
                     d = d - 10;
-                    overflow = 1;
                 }
                 else
                 {
-                    overflow = 0;
+                    c = false;
                 }
 
-                if (n1p.Next != null && n2p.Next != null)
+                if (np1.Next == null)
                 {
-                    n1p.Next.Data = d;
-                    n1p = n1p.Next;
-                    n2p = n2p.Next;
+                    np1.Next = np2.Next;
+                    np2.Next = null;
                 }
-                else if (n1p.Next != null && n2p.Next == null)
-                {
-                    n1p.Next.Data = d;
-                    n1p = n1p.Next;
-                    if (overflow == 0)
-                    {
-                        break;
-                    }
-                }
-                else if (n1p.Next == null && n2p.Next != null)
-                {
-                    n1p.Next = new Node(d);
-                    n1p = n1p.Next;
-                    n2p = n2p.Next;
-                }
-                else if (n1p.Next == null && n2p.Next == null)
-                {
-                    if (d != 0 || overflow != 0)
-                    {
-                        n1p.Next = new Node(d);
-                        n1p = n1p.Next;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                else
+                np1.Next.Data = d;
+
+                if (!c && np2.Next == null)
                 {
                     break;
                 }
+
+                if (np1.Next != null) np1 = np1.Next;
+                if (np2.Next != null) np2 = np2.Next;
             }
+            if (c)
+            {
+                np1.Next = new Node(1);
+            }
+
             return n1;
         }
         public Node SumForwardOrder(Node n1, Node n2)
