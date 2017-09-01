@@ -124,41 +124,29 @@ namespace Cracking
 
         public Node Partition(Node entity, int p)
         {
-            if (entity == null || entity.Next == null) return entity;
-
-            Node rp = new Node(0);
+            if (entity == null) return entity;
+            Node lp = new Node(-1);
+            Node rp = new Node(-1);
+            Node lh = lp;
             Node rh = rp;
 
-            Node lp = new Node(0);
-            Node lh = new Node(0);
             lp.Next = entity;
-            lh.Next = entity;
-            while (lh.Next != null)
+            while(lp.Next != null)
             {
-                if (lh.Next.Data < p)
-                {
-                    lh = lh.Next;
-                    break;
-                }
-                lh = lh.Next;
-            }
-
-            while (lp.Next != null)
-            {
-                if (lp.Next.Data >= p)
+                if(lp.Next.Data >= p)
                 {
                     rp.Next = lp.Next;
                     lp.Next = lp.Next.Next;
                     rp = rp.Next;
                     rp.Next = null;
-                }
-                else
+                }else
                 {
                     lp = lp.Next;
                 }
             }
             lp.Next = rh.Next;
-            return lh;
+
+            return lh.Next;
         }
 
         public Node SumReverseOrder(Node n1, Node n2)
