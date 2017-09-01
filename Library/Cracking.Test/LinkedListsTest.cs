@@ -215,6 +215,24 @@ namespace Cracking.Test
             Assert.AreEqual(5, n.Data);
             n = n.Next;
             Assert.IsNull(n);
+
+            entity = new LinkedLists.Node(5);
+            entity.Append(1);
+            entity.Append(4);
+            entity.Append(2);
+            entity.Append(3);
+            n = _target.Partition(entity, 3);
+            Assert.AreEqual(1, n.Data);
+            n = n.Next;
+            Assert.AreEqual(2, n.Data);
+            n = n.Next;
+            Assert.AreEqual(5, n.Data);
+            n = n.Next;
+            Assert.AreEqual(4, n.Data);
+            n = n.Next;
+            Assert.AreEqual(3, n.Data);
+            n = n.Next;
+            Assert.IsNull(n);
         }
 
         [TestMethod]
