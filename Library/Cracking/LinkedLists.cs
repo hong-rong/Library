@@ -254,33 +254,30 @@ namespace Cracking
         public bool IsPalin(Node n)
         {
             if (n == null || n.Next == null) return true;
-            var r = ReverseAndCopy(n);
-            Node one = new Node(0);
-            one.Next = n;
-            Node two = new Node(0);
-            two.Next = r;
-            while (one.Next != null && two.Next != null)
+
+            Node r = ReverseAndCopy(n);
+            while(n != null && r != null)
             {
-                if (one.Next.Data != two.Next.Data) return false;
-                two.Next = two.Next.Next;
-                one.Next = one.Next.Next;
+                if (n.Data != r.Data) return false;
+                n = n.Next;
+                r = r.Next;
             }
-            return one.Next == null && two.Next == null;
+
+            return true;
         }
         public Node ReverseAndCopy(Node n)
         {
-            if (n == null || n.Next == null) return n;
-            Node p = new Node(0);
-            Node h = new Node(0);
-            p.Next = n;
-            while (p.Next != null)
+            Node curr = n;
+            Node prev = null;
+            while(curr != null)
             {
-                var t = new Node(p.Next.Data);
-                t.Next = h.Next;
-                h.Next = t;
-                p.Next = p.Next.Next;
+                Node temp = new Node(curr.Data);
+                temp.Next = prev;
+                prev = temp;
+                curr = curr.Next;
             }
-            return h.Next;
+
+            return prev;
         }
 
         public bool IsPalinIterativeStack(Node n)
