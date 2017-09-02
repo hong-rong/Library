@@ -282,78 +282,31 @@ namespace Cracking
 
         public bool IsPalinIterativeStack(Node n)
         {
-            if (n == null) throw new ArgumentNullException();
-            if (n.Next == null) return true;
-            Node s = new Node(0);
-            s.Next = n;
-            Node f = new Node(0);
-            f.Next = n;
-            int index = 0;
-            Stack<Node> st = new Stack<Node>(16);
-            st.Push(s.Next);
-            //1 1
-            //1 2 1
-            //1 2 2 1
-            //1 2 3 4
-            //1 2 3 4 5
-            while (f.Next != null)
-            {
-                f.Next = f.Next.Next;
-                index++;
-                if (f.Next == null) break;
-                f.Next = f.Next.Next;
-                index++;
-                s.Next = s.Next.Next;
-                st.Push(s.Next);
-            }
-
-            if (index % 2 == 1)
-            {
-                s.Next = s.Next.Next;
-            }
-            st.Pop();
-            while (s.Next != null)
-            {
-                var pop = st.Pop();
-                if (pop.Data != s.Next.Data) return false;
-                s.Next = s.Next.Next;
-            }
-
-            return true;
-        }
-
-        public bool IsPalinIterativeStackRefined(Node n)
-        {
-            if (n == null) throw new ArgumentNullException();
-            if (n.Next == null) return true;
+            if (n == null || n.Next == null) return true;
+            System.Collections.Generic.Stack<int> stack = new System.Collections.Generic.Stack<int>();
             Node s = n;
             Node f = n;
-            Stack<int> st = new Stack<int>(16);
-            //1 1
-            //1 2 1
-            //1 2 2 1
-            //1 2 3 4 5
-            while (f != null && f.Next != null)
+
+            while(f != null && f.Next != null)
             {
+                stack.Push(s.Data);
+                s = s.Next;
                 f = f.Next.Next;
-                st.Push(s.Data);
-                s = s.Next;
             }
-            if (f != null)
+            if (f != null) 
             {
                 s = s.Next;
             }
-            while (s != null)
+
+            while(s != null)
             {
-                var pop = st.Pop();
-                if (pop != s.Data) return false;
+                if (s.Data != stack.Pop()) return false;
                 s = s.Next;
             }
 
             return true;
         }
-
-
+        
         #region IsPalinRec
 
         public bool IsPalinRec(Node n)
@@ -414,8 +367,7 @@ namespace Cracking
         }
 
         #endregion
-
-
+        
         public Node Intersection(Node n1, Node n2)
         {
             //123
