@@ -778,50 +778,7 @@ namespace Cracking.Test
             n.Append(3);
             Assert.IsFalse(_target.IsPalinIterativeStack(n));
         }
-
-        [TestMethod]
-        public void IsPalinIterativeStackRefinedTest()
-        {
-            LinkedLists.Node n = new LinkedLists.Node(1);
-            Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
-
-            n = new LinkedLists.Node(1);
-            n.Append(1);
-            n.Append(1);
-            Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
-
-            n = new LinkedLists.Node(1);
-            n.Append(2);
-            n.Append(1);
-            Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
-
-            n = new LinkedLists.Node(1);
-            n.Append(2);
-            n.Append(2);
-            n.Append(1);
-            Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
-
-            n = new LinkedLists.Node(1);
-            n.Append(2);
-            n.Append(3);
-            n.Append(4);
-            n.Append(5);
-            n.Append(4);
-            n.Append(3);
-            n.Append(2);
-            n.Append(1);
-            Assert.IsTrue(_target.IsPalinIterativeStackRefined(n));
-
-            n = new LinkedLists.Node(1);
-            n.Append(2);
-            Assert.IsFalse(_target.IsPalinIterativeStackRefined(n));
-
-            n = new LinkedLists.Node(1);
-            n.Append(2);
-            n.Append(3);
-            Assert.IsFalse(_target.IsPalinIterativeStackRefined(n));
-        }
-
+        
         [TestMethod]
         public void IsPlineRecTest()
         {
