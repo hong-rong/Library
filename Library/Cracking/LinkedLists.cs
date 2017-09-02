@@ -131,15 +131,16 @@ namespace Cracking
             Node rh = rp;
 
             lp.Next = entity;
-            while(lp.Next != null)
+            while (lp.Next != null)
             {
-                if(lp.Next.Data >= p)
+                if (lp.Next.Data >= p)
                 {
                     rp.Next = lp.Next;
                     lp.Next = lp.Next.Next;
                     rp = rp.Next;
                     rp.Next = null;
-                }else
+                }
+                else
                 {
                     lp = lp.Next;
                 }
@@ -256,7 +257,7 @@ namespace Cracking
             if (n == null || n.Next == null) return true;
 
             Node r = ReverseAndCopy(n);
-            while(n != null && r != null)
+            while (n != null && r != null)
             {
                 if (n.Data != r.Data) return false;
                 n = n.Next;
@@ -269,7 +270,7 @@ namespace Cracking
         {
             Node curr = n;
             Node prev = null;
-            while(curr != null)
+            while (curr != null)
             {
                 Node temp = new Node(curr.Data);
                 temp.Next = prev;
@@ -287,18 +288,18 @@ namespace Cracking
             Node s = n;
             Node f = n;
 
-            while(f != null && f.Next != null)
+            while (f != null && f.Next != null)
             {
                 stack.Push(s.Data);
                 s = s.Next;
                 f = f.Next.Next;
             }
-            if (f != null) 
+            if (f != null)
             {
                 s = s.Next;
             }
 
-            while(s != null)
+            while (s != null)
             {
                 if (s.Data != stack.Pop()) return false;
                 s = s.Next;
@@ -306,7 +307,7 @@ namespace Cracking
 
             return true;
         }
-        
+
         #region IsPalinRec
 
         public bool IsPalinRec(Node n)
@@ -367,51 +368,60 @@ namespace Cracking
         }
 
         #endregion
-        
+
         public Node Intersection(Node n1, Node n2)
         {
-            //123
-            //23
             if (n1 == null || n2 == null) return null;
-            Node l = n1;
-            Node s = n2;
-            int len1 = 1;
-            int len2 = 1;
-            int dat;
-            while (l.Next != null)
+
+            int l1 = 0;
+            int l2 = 0;
+            Node p1 = new Node(-1);
+            Node p2 = new Node(-1);
+
+            p1.Next = n1;
+            p2.Next = n2;
+            while (p1.Next != null)
             {
-                len1++;
-                l = l.Next;
+                l1++;
+                p1 = p1.Next;
             }
-            while (s.Next != null)
+            while (p2.Next != null)
             {
-                len2++;
-                s = s.Next;
+                l2++;
+                p2 = p2.Next;
             }
-            if (l != s) return null;
-            if (len1 >= len2)
+            if (p1 != p2) return null;
+
+            p1 = n1;
+            p2 = n2;
+            int dat = 0;
+            if (l1 > l2)
             {
-                l = n1;
-                s = n2;
-                dat = len1 - len2;
+                dat = l1 - l2;
+                while (dat > 0)
+                {
+                    p1 = p1.Next;
+                    dat--;
+                }
             }
-            else
+            else if (l2 > l1)
             {
-                l = n2;
-                s = n1;
-                dat = len2 - len1;
+                dat = l2 - l1;
+                while (dat > 0)
+                {
+                    p2 = p2.Next;
+                    dat--;
+                }
             }
-            for (int i = 0; i < dat; i++)
+
+            do
             {
-                l = l.Next;
-            }
-            while (l != null)
-            {
-                if (l == s) return l;
-                l = l.Next;
-                s = s.Next;
-            }
-            throw new InvalidCastException();
+                if (p1 == p2) return p1;
+                p1 = p1.Next;
+                p2 = p2.Next;
+            } while (p1 != null);
+
+            throw new InvalidOperationException();
         }
 
         public Node Loop(Node n)
