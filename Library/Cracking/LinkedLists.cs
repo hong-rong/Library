@@ -426,29 +426,25 @@ namespace Cracking
 
         public Node Loop(Node n)
         {
-            if (n == null || n.Next == null) return n;
-            Node h = new Node(0) { Next = n };
-            Node f = n;
+            if (n == null) return null;
+
             Node s = n;
-            //12345(3)
-            while (s != null)
+            Node f = n;
+
+            do
             {
                 s = s.Next;
                 f = f.Next.Next;
-                if (f.Data == s.Data)
-                {
-                    s = h.Next;
-                    break;
-                }
-            }
+            } while (s != f);
 
-            while (f.Data != s.Data)
+            s = n;
+            while (s != f)
             {
-                f = f.Next;
                 s = s.Next;
+                f = f.Next;
             }
 
-            return f;
+            return s;
         }
         #endregion
 
