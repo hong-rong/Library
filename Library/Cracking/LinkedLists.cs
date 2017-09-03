@@ -312,57 +312,38 @@ namespace Cracking
 
         public bool IsPalinRec(Node n)
         {
-            if (n == null) throw new ArgumentNullException();
-            if (n.Next == null) return true;
+            if (n == null || n.Next == null) return true;
 
             int length = CountLength(n);
-
-            Node t = n;
-            //1 2 2 1
-            return IsPalin(t, length).IsPaline;
+            return IsPalin(n, length).IsPaline;
         }
 
         private ReturnEntity IsPalin(Node n, int length)
         {
-            //if (n == null || length == 0)
-            if (length == 0)
+            if (length == 0 || length == 1)
             {
                 return new ReturnEntity
                 {
-                    Entity = n,
-                    IsPaline = true
-                };
-            }
-            if (length == 1)
-            {
-                return new ReturnEntity
-                {
-                    Entity = n.Next,
-                    IsPaline = true
+                    IsPaline = true,
+                    Node = length == 0 ? n : n.Next
                 };
             }
 
             var returnNode = IsPalin(n.Next, length - 2);
-            if (!returnNode.IsPaline)
-            {
-                returnNode.Entity = returnNode.Entity.Next;
-                return returnNode;
-            }
+            if (!returnNode.IsPaline) return returnNode;
 
-            returnNode.IsPaline = returnNode.Entity.Data == n.Data;
-            returnNode.Entity = returnNode.Entity.Next;
-
+            returnNode.IsPaline = returnNode.Node.Data == n.Data;
+            returnNode.Node = returnNode.Node.Next;
             return returnNode;
         }
 
         private static int CountLength(Node n)
         {
             int length = 0;
-            Node t = n;
-            while (t != null)
+            while (n != null)
             {
                 length++;
-                t = t.Next;
+                n = n.Next;
             }
             return length;
         }
@@ -520,7 +501,7 @@ namespace Cracking
 
         public class ReturnEntity
         {
-            public Node Entity { get; set; }
+            public Node Node { get; set; }
             public bool IsPaline { get; set; }
         }
         #endregion
