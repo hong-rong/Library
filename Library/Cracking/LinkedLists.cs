@@ -203,24 +203,33 @@ namespace Cracking
             return Reverse(sum);
         }
 
-        public Node Reverse(Node entity)
+        public Node Reverse(Node n)
         {
-            //1->2->3
-            if (entity == null || entity.Next == null) return entity;
-            Node n = new Node(0);
-            Node p = new Node(0);
-            n.Next = entity.Next;
-            p.Next = entity;
-            entity.Next = null;
-            while (n.Next != null)
-            {
-                var t = n.Next;
-                n.Next = n.Next.Next;//not n = n.Next
-                t.Next = p.Next;
-                p.Next = t;
-            }
-            return p.Next;
+            return ReverseRec(null, n);
         }
+
+        public Node ReverseIter(Node n)
+        {
+            var h = n;
+            Node p = null;
+            while (h != null)
+            {
+                var t = h;
+                h = h.Next;
+                t.Next = p;
+                p = t;
+            }
+            return p;
+        }
+
+        private Node ReverseRec(Node pre, Node curr)
+        {
+            if (curr == null) return pre;
+            var n = curr.Next;
+            curr.Next = pre;
+            return ReverseRec(curr, n);
+        }
+
         public Node SumReverseOrderRec(Node n1, Node n2)
         {
             return SumReverseOrderRec(n1, n2, false);

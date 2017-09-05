@@ -683,7 +683,7 @@ namespace Cracking.Test
             n.Append(2);
             n.Append(3);
             n.Append(4);
-            var actual = _target.Reverse(n);
+            var actual = _target.ReverseAndCopy(n);
             Assert.AreEqual(4, actual.Data);
             actual = actual.Next;
             Assert.AreEqual(3, actual.Data);
