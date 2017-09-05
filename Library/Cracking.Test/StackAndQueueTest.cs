@@ -1,5 +1,4 @@
 ﻿using System;
-using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cracking.Test
@@ -20,10 +19,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void PoNullTest()
         {
             S<int> s = new S<int>();
-            s.Invoking(x => x.Pop()).ShouldThrow<InvalidOperationException>();
+            s.Pop();
         }
 
         [TestMethod]
@@ -39,10 +39,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void PeNullTest()
         {
             S<int> s = new S<int>();
-            s.Invoking(x => x.Peek()).ShouldThrow<InvalidOperationException>();
+            s.Peek();
         }
 
         [TestMethod]
@@ -98,10 +99,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveNullTest()
         {
             Q<int> q = new Q<int>();
-            q.Invoking(x => x.Remove()).ShouldThrow<InvalidOperationException>();
+            q.Remove();
         }
 
         [TestMethod]
@@ -121,10 +123,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void QPeNullTest()
         {
             Q<int> q = new Q<int>();
-            q.Invoking(x => x.Peek()).ShouldThrow<InvalidOperationException>();
+            q.Peek();
         }
 
         [TestMethod]
@@ -207,6 +210,7 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SWithAPuFullExTest()
         {
             StackAndQueue.SWithA<int> s = new StackAndQueue.SWithA<int>();
@@ -214,14 +218,16 @@ namespace Cracking.Test
             s.Push(1);
             s.Push(1);
             s.Push(1);
-            s.Invoking(x => x.Push(1)).ShouldThrow<InvalidOperationException>();
+            
+            s.Push(1);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SWithAPoNullTest()
         {
             StackAndQueue.SWithA<int> s = new StackAndQueue.SWithA<int>();
-            s.Invoking(x => x.Pop()).ShouldThrow<InvalidOperationException>();
+            s.Pop();
         }
 
         [TestMethod]
@@ -237,10 +243,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SWithAPeNullTest()
         {
             StackAndQueue.SWithA<int> s = new StackAndQueue.SWithA<int>();
-            s.Invoking(x => x.Peek()).ShouldThrow<InvalidOperationException>();
+            s.Peek();
         }
 
         [TestMethod]
@@ -299,10 +306,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SetOfSPoNullTest()
         {
             StackAndQueue.SetOfS<int> s = new StackAndQueue.SetOfS<int>();
-            s.Invoking(x => x.Pop()).ShouldThrow<InvalidOperationException>();
+            s.Pop();
         }
 
         [TestMethod]
@@ -336,10 +344,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SetOfSPeNullTest()
         {
             StackAndQueue.SetOfS<int> s = new StackAndQueue.SetOfS<int>();
-            s.Invoking(x => x.Peek()).ShouldThrow<InvalidOperationException>();
+            s.Peek();
         }
 
         [TestMethod]
@@ -380,10 +389,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void QWithSRemoveNullTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Invoking(x => x.Remove()).ShouldThrow<InvalidOperationException>();
+            q.Remove();
         }
 
         [TestMethod]
@@ -402,10 +412,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void QWithSFirstEmptyExTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Invoking(x => { var f = x.First; }).ShouldThrow<InvalidOperationException>();
+            var f = q.First;
         }
 
         [TestMethod]
@@ -419,10 +430,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void QWithSLastEmptyExTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Invoking(x => { var f = x.Last; }).ShouldThrow<InvalidOperationException>();
+            var f = q.Last;
         }
 
         [TestMethod]
@@ -473,10 +485,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SortSPoNullTest()
         {
             StackAndQueue.SortS s = new StackAndQueue.SortS();
-            s.Invoking(x => x.Pop()).ShouldThrow<InvalidOperationException>();
+            s.Pop();
         }
 
         [TestMethod]
@@ -507,10 +520,11 @@ namespace Cracking.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void SortSPeNullTest()
         {
             StackAndQueue.SortS s = new StackAndQueue.SortS();
-            s.Invoking(x => x.Peek()).ShouldThrow<InvalidOperationException>();
+            s.Peek();
         }
 
         [TestMethod]
