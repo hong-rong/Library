@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Controller\IUserModelController.cs" />
     <Compile Include="Controller\UserModelController.cs" />
-    <Compile Include="Model\IUserModelObserver.cs" />
     <Compile Include="Model\UserModelEventArgs.cs" />
     <Compile Include="View\IUserView.cs" />
     <Compile Include="View\UserView.cs">

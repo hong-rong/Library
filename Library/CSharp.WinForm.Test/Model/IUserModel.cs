@@ -8,9 +8,11 @@ namespace CSharp.WinForm.Test.Model
 {
     public interface IUserModel
     {
-        void Attach(IUserModelObserver observer);
+        event CSharp.WinForm.Test.Model.UserModel.UserModelHandler Loaded;
 
         void LoadUsers();
+
+        Task<List<User>> LoadUsersAsyc();
 
         void UpdateUser(User user);
     }

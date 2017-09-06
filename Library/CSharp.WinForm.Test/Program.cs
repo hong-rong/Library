@@ -20,11 +20,11 @@ namespace CSharp.WinForm.Test
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IUserView view = new UserView();
+            Form view = new UserView();
             IUserModel model = new UserModel();
-            IUserModelController contoller = new UserModelController(view, model);
+            IUserModelController contoller = new UserModelController((IUserView)view, model);
 
-            Application.Run((Form)view);
+            Application.Run(view);
         }
     }
 }

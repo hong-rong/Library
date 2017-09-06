@@ -1,4 +1,5 @@
 ﻿using CSharp.WinForm.Test.Controller;
+using CSharp.WinForm.Test.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace CSharp.WinForm.Test.View
         event ViewHandler<IUserView> Changed;
 
         event LoadUser LoadUser;
+
+        void UsersLoaded(object sender, UserModelEventArgs args);
 
         void SetController(IUserModelController controller);
     }

@@ -9,31 +9,27 @@ namespace CSharp.WinForm.Test.Model
 {
     public class UserModel : IUserModel
     {
-        public delegate void UserModelHandler<IModel>(IModel sender, UserModelEventArgs args);
-        public event UserModelHandler<IUserModel> Loaded;
+        public delegate void UserModelHandler(object sender, UserModelEventArgs args);
+        public event UserModelHandler Loaded;
 
         private List<User> _users;
 
-        public void Attach(IUserModelObserver observer)
+        public Task<List<User>> LoadUsersAsyc()
         {
-            Loaded += observer.UsersLoaded;
+            return Task.Run(() =>
+            {
+                System.Threading.Thread.Sleep(5000);
+                return ReadUsers();
+            });
         }
 
         public void LoadUsers()
         {
-            //Task<List<User>> t = Task.Run(() =>
-            //{
-            //    System.Threading.Thread.Sleep(3000);
-            //    return ReadUsers();
-            //});
-
-            //List<User> users = ReadUsers();
-            var t = await ReadUsersAsync();
-
-            //_users = t.Result;
+            var users = ReadUsers();
+            _users = users;
             if (Loaded != null)
             {
-                Loaded.Invoke(this, new UserModelEventArgs() { Users = t.Result });
+                Loaded.Invoke(this, new UserModelEventArgs() { Users = users });
             }
         }
 
@@ -56,15 +52,8 @@ namespace CSharp.WinForm.Test.Model
                     users.Add(user);
                 }
             }
-            return users;
-        }
 
-        private Task<List<User>> ReadUsersAsync() 
-        {
-            return Task.Run(() => 
-            {
-                return ReadUsers();
-            });
+            return users;
         }
 
         public void UpdateUser(User user)

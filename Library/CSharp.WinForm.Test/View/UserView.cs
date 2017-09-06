@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace CSharp.WinForm.Test.View
 {
-    public partial class UserView : Form, IUserView, IUserModelObserver
+    public partial class UserView : Form, IUserView
     {
         private IUserModelController _controller;
 
@@ -30,18 +30,30 @@ namespace CSharp.WinForm.Test.View
             _controller = controller;
         }
 
-        public void UsersLoaded(IUserModel userModel, UserModelEventArgs args)
+        public void UsersLoaded(object sender, UserModelEventArgs args)
         {
-            _listViewUser.Columns.Clear();
-            _listViewUser.Columns.Add("Id", 150, HorizontalAlignment.Left);
-            _listViewUser.Columns.Add("First Name", 150, HorizontalAlignment.Left);
-            _listViewUser.Columns.Add("Last Name", 150, HorizontalAlignment.Left);
-            _listViewUser.Columns.Add("Department", 150, HorizontalAlignment.Left);
-            _listViewUser.Columns.Add("Gender", 150, HorizontalAlignment.Left);
+            RefreshGrid(args.Users);
+        }
 
-            _listViewUser.Items.Clear();
+        private void RefreshGrid(List<User> users)
+        {
+            try
+            {
+                _listViewUser.Columns.Clear();
+                _listViewUser.Columns.Add("Id", 150, HorizontalAlignment.Left);
+                _listViewUser.Columns.Add("First Name", 150, HorizontalAlignment.Left);
+                _listViewUser.Columns.Add("Last Name", 150, HorizontalAlignment.Left);
+                _listViewUser.Columns.Add("Department", 150, HorizontalAlignment.Left);
+                _listViewUser.Columns.Add("Gender", 150, HorizontalAlignment.Left);
 
-            foreach (var user in args.Users)
+                _listViewUser.Items.Clear();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+
+            foreach (var user in users)
             {
                 var row = _listViewUser.Items.Add(user.Id);
                 row.SubItems.Add(user.FirstName);
@@ -51,12 +63,15 @@ namespace CSharp.WinForm.Test.View
             };
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            if (LoadUser != null)
-            {
-                LoadUser.Invoke(this, EventArgs.Empty);
-            }
+            //if (LoadUser != null)
+            //{
+            //    LoadUser.Invoke(this, EventArgs.Empty);
+            //}
+            Task<List<User>> t = _controller.LoadUserAsync();
+            //List<User> u = t.Result;
+            RefreshGrid(await t);
         }
     }
 }

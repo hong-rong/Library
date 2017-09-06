@@ -18,15 +18,14 @@ namespace CSharp.WinForm.Test.Controller
             _view = userView;
             _model = userModel;
 
-            _view.LoadUser += UserView_LoadUser;
+            _view.SetController(this);
             _view.Changed += UserView_Changed;
-
-            _model.Attach((IUserModelObserver)_view);
+            _model.Loaded += _view.UsersLoaded;
         }
 
-        private void UserView_LoadUser(object sender, EventArgs args)
+        public Task<List<User>> LoadUserAsync()
         {
-            _model.LoadUsers();
+            return _model.LoadUsersAsyc();
         }
 
         private void UserView_Changed(IUserView sender, UserViewEventArgs args)
