@@ -32,13 +32,26 @@ namespace CSharp.WinForm.Test.View
 
         public void UsersLoaded(IUserModel userModel, UserModelEventArgs args)
         {
+            _listViewUser.Columns.Clear();
+            _listViewUser.Columns.Add("Id", 150, HorizontalAlignment.Left);
+            _listViewUser.Columns.Add("First Name", 150, HorizontalAlignment.Left);
+            _listViewUser.Columns.Add("Last Name", 150, HorizontalAlignment.Left);
+            _listViewUser.Columns.Add("Department", 150, HorizontalAlignment.Left);
+            _listViewUser.Columns.Add("Gender", 150, HorizontalAlignment.Left);
+
+            _listViewUser.Items.Clear();
+
             foreach (var user in args.Users)
             {
-                System.Diagnostics.Debug.WriteLine(user.Id);
+                var row = _listViewUser.Items.Add(user.Id);
+                row.SubItems.Add(user.FirstName);
+                row.SubItems.Add(user.LastName);
+                row.SubItems.Add(user.Department);
+                row.SubItems.Add(user.Gender.ToString());
             };
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (LoadUser != null)
             {

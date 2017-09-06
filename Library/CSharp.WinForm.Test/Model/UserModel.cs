@@ -21,12 +21,19 @@ namespace CSharp.WinForm.Test.Model
 
         public void LoadUsers()
         {
-            List<User> users = ReadUsers();
+            //Task<List<User>> t = Task.Run(() =>
+            //{
+            //    System.Threading.Thread.Sleep(3000);
+            //    return ReadUsers();
+            //});
 
-            _users = users;
+            //List<User> users = ReadUsers();
+            var t = await ReadUsersAsync();
+
+            //_users = t.Result;
             if (Loaded != null)
             {
-                Loaded.Invoke(this, new UserModelEventArgs() { Users = _users });
+                Loaded.Invoke(this, new UserModelEventArgs() { Users = t.Result });
             }
         }
 
@@ -50,6 +57,14 @@ namespace CSharp.WinForm.Test.Model
                 }
             }
             return users;
+        }
+
+        private Task<List<User>> ReadUsersAsync() 
+        {
+            return Task.Run(() => 
+            {
+                return ReadUsers();
+            });
         }
 
         public void UpdateUser(User user)
