@@ -48,11 +48,6 @@ namespace Cracking
 
     public interface IS<T>
     {
-        Node<T> Top
-        {
-            get;
-        }
-
         T Pop();
 
         void Push(T item);
