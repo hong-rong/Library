@@ -67,10 +67,10 @@ namespace Cracking
 
     public class Q<T> : IQ<T>
     {
-        public Node<T> First { get; set; }
+        public Node<T> _first { get; set; }
         public Node<T> Last { get; set; }
 
-        public void Add(T item)
+        public void Enqueue(T item)
         {
             Node<T> t = new Node<T>(item);
             if (Last != null)
@@ -78,45 +78,51 @@ namespace Cracking
                 Last.Next = t;
             }
             Last = t;
-            if (First == null)
+            if (_first == null)
             {
-                First = Last;
+                _first = Last;
             }
         }
 
-        public T Remove()
+        public T Dequeue()
         {
-            if (First == null) throw new InvalidOperationException("No such element");
-            T data = First.Data;
-            First = First.Next;
-            if (First == null)
+            if (IsEmpty()) throw new InvalidOperationException();
+            T data = _first.Data;
+            _first = _first.Next;
+            if (_first == null)
             {
                 Last = null;
             }
             return data;
         }
 
-        public T Peek()
+        public T PeekFont()
         {
-            if (First == null) throw new InvalidOperationException("No such element");
-            return First.Data;
+            if (IsEmpty()) throw new InvalidOperationException();
+            return _first.Data;
+        }
+
+        public T PeekEnd()
+        {
+            throw new NotImplementedException();
         }
 
         public bool IsEmpty()
         {
-            return First == null;
+            return _first == null;
         }
     }
 
     public interface IQ<T>
     {
-        Node<T> First { get; set; }
+        Node<T> _first { get; set; }
         Node<T> Last { get; set; }
 
-        void Add(T item);
+        void Enqueue(T item);
+        T Dequeue();
+        T PeekFont();
+        T PeekEnd();
         bool IsEmpty();
-        T Peek();
-        T Remove();
     }
 
     #endregion
@@ -328,7 +334,7 @@ namespace Cracking
                 }
             }
 
-            public void Add(T item)
+            public void Enqueue(T item)
             {
                 while (!_old.IsEmpty())
                 {

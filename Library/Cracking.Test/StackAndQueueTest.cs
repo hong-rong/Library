@@ -90,11 +90,11 @@ namespace Cracking.Test
         public void AddTest()
         {
             Q<int> q = new Q<int>();
-            q.Add(1);
-            Assert.AreEqual(1, q.First.Data);
+            q.Enqueue(1);
+            Assert.AreEqual(1, q._first.Data);
             Assert.AreEqual(1, q.Last.Data);
-            q.Add(2);
-            Assert.AreEqual(1, q.First.Data);
+            q.Enqueue(2);
+            Assert.AreEqual(1, q._first.Data);
             Assert.AreEqual(2, q.Last.Data);
         }
 
@@ -103,22 +103,22 @@ namespace Cracking.Test
         public void RemoveNullTest()
         {
             Q<int> q = new Q<int>();
-            q.Remove();
+            q.Dequeue();
         }
 
         [TestMethod]
         public void RemoveTest()
         {
             Q<int> q = new Q<int>();
-            q.Add(1);
-            q.Add(2);
-            var exp = q.Remove();
+            q.Enqueue(1);
+            q.Enqueue(2);
+            var exp = q.Dequeue();
             Assert.AreEqual(1, exp);
-            Assert.AreEqual(2, q.First.Data);
+            Assert.AreEqual(2, q._first.Data);
             Assert.AreEqual(2, q.Last.Data);
-            exp = q.Remove();
+            exp = q.Dequeue();
             Assert.AreEqual(2, exp);
-            Assert.IsNull(q.First);
+            Assert.IsNull(q._first);
             Assert.IsNull(q.Last);
         }
 
@@ -127,22 +127,22 @@ namespace Cracking.Test
         public void QPeNullTest()
         {
             Q<int> q = new Q<int>();
-            q.Peek();
+            q.PeekFont();
         }
 
         [TestMethod]
         public void QPeTest()
         {
             Q<int> q = new Q<int>();
-            q.Add(1);
-            q.Add(2);
-            var exp = q.Peek();
+            q.Enqueue(1);
+            q.Enqueue(2);
+            var exp = q.PeekFont();
             Assert.AreEqual(1, exp);
-            Assert.AreEqual(1, q.First.Data);
+            Assert.AreEqual(1, q._first.Data);
             Assert.AreEqual(2, q.Last.Data);
-            exp = q.Peek();
+            exp = q.PeekFont();
             Assert.AreEqual(1, exp);
-            Assert.AreEqual(1, q.First.Data);
+            Assert.AreEqual(1, q._first.Data);
             Assert.AreEqual(2, q.Last.Data);
         }
 
@@ -151,7 +151,7 @@ namespace Cracking.Test
         {
             Q<int> q = new Q<int>();
             Assert.IsTrue(q.IsEmpty());
-            q.Add(1);
+            q.Enqueue(1);
             Assert.IsFalse(q.IsEmpty());
         }
 
@@ -380,10 +380,10 @@ namespace Cracking.Test
         public void QWithSAddTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Add(1);
+            q.Enqueue(1);
             Assert.AreEqual(1, q.First);
             Assert.AreEqual(1, q.Last);
-            q.Add(2);
+            q.Enqueue(2);
             Assert.AreEqual(1, q.First);
             Assert.AreEqual(2, q.Last);
         }
@@ -400,8 +400,8 @@ namespace Cracking.Test
         public void QWithSRemoveTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Add(1);
-            q.Add(2);
+            q.Enqueue(1);
+            q.Enqueue(2);
             var exp = q.Remove();
             Assert.AreEqual(1, exp);
             Assert.AreEqual(2, q.First);
@@ -423,9 +423,9 @@ namespace Cracking.Test
         public void QWithSFirstTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Add(1);
+            q.Enqueue(1);
             Assert.AreEqual(1, q.First);
-            q.Add(2);
+            q.Enqueue(2);
             Assert.AreEqual(1, q.First);
         }
 
@@ -441,9 +441,9 @@ namespace Cracking.Test
         public void QWithSLastTest()
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
-            q.Add(1);
+            q.Enqueue(1);
             Assert.AreEqual(1, q.Last);
-            q.Add(2);
+            q.Enqueue(2);
             Assert.AreEqual(2, q.Last);
         }
 
@@ -452,7 +452,7 @@ namespace Cracking.Test
         {
             StackAndQueue.QWithS<int> q = new StackAndQueue.QWithS<int>();
             Assert.IsTrue(q.IsEmpty());
-            q.Add(1);
+            q.Enqueue(1);
             Assert.IsFalse(q.IsEmpty());
         }
 
