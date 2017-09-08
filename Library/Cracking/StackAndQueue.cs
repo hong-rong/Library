@@ -44,6 +44,12 @@ namespace Cracking
         {
             return Top == null;
         }
+
+
+        public bool IsFull()
+        {
+            throw new NotSupportedException();
+        }
     }
 
     public interface IS<T>
@@ -55,6 +61,8 @@ namespace Cracking
         T Peek();
 
         bool IsEmpty();
+
+        bool IsFull();
     }
 
     public class Q<T> : IQ<T>
@@ -206,74 +214,80 @@ namespace Cracking
         public class SWithA<T>
         {
             public const int Capacity = 4;
-            private int _size = -1;
+            private int _i = -1;
             private readonly T[] _t = new T[Capacity];
 
             public T Pop()
             {
-                if (IsEmpty()) throw new InvalidOperationException("empty");
-                return _t[_size--];
+                if (IsEmpty()) throw new InvalidOperationException();
+                return _t[_i--];
             }
 
             public void Push(T item)
             {
-                if (IsFull()) throw new InvalidOperationException("full");
-                _t[++_size] = item;
+                if (IsFull()) throw new InvalidOperationException();
+                _t[++_i] = item;
             }
 
             public T Peek()
             {
-                if (IsEmpty()) throw new InvalidOperationException("empty");
-                return _t[_size];
+                if (IsEmpty()) throw new InvalidOperationException();
+                return _t[_i];
             }
 
             public bool IsEmpty()
             {
-                return _size == -1;
+                return _i == -1;
             }
 
             public bool IsFull()
             {
-                return _size + 1 == Capacity;
+                return _i == Capacity - 1;
             }
         }
         #endregion
 
         #region set of s
 
-        public class SetOfS<T>
+        public class SetOfS<T> : IS<T>
         {
-            private readonly List<SWithA<T>> _list = new List<SWithA<T>>();
+            private readonly List<SWithA<T>> _s = new List<SWithA<T>>();
 
             public T Pop()
             {
                 if (IsEmpty()) throw new InvalidOperationException("empty");
-                var t = _list[_list.Count - 1].Pop();
-                if (_list[_list.Count - 1].IsEmpty())
+                var t = _s[_s.Count - 1].Pop();
+                if (_s[_s.Count - 1].IsEmpty())
                 {
-                    _list.Remove(_list[_list.Count - 1]);
+                    _s.Remove(_s[_s.Count - 1]);
                 }
                 return t;
             }
 
             public void Push(T item)
             {
-                if (_list.Count == 0 || _list[_list.Count - 1].IsFull())
+                if (_s.Count == 0 || _s[_s.Count - 1].IsFull())
                 {
-                    _list.Add(new SWithA<T>());
+                    _s.Add(new SWithA<T>());
                 }
-                _list[_list.Count - 1].Push(item);
+                _s[_s.Count - 1].Push(item);
             }
 
             public T Peek()
             {
                 if (IsEmpty()) throw new InvalidOperationException("empty");
-                return _list[_list.Count - 1].Peek();
+                return _s[_s.Count - 1].Peek();
             }
 
             public bool IsEmpty()
             {
-                return _list.Count == 0;
+                return _s.Count == 0;
+            }
+
+
+            public bool IsFull()
+            {
+                throw new NotSupportedException();
             }
         }
 
@@ -405,6 +419,12 @@ namespace Cracking
             public bool IsEmpty()
             {
                 return _small.IsEmpty();
+            }
+
+
+            public bool IsFull()
+            {
+                throw new NotSupportedException();
             }
         }
 
