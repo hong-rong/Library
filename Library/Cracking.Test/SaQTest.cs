@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Cracking.Test
 {
     [TestClass]
-    public class StackAndQueueTest
+    public class SaQTest
     {
         #region test
 

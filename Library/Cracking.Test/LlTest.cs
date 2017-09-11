@@ -3,12 +3,12 @@
 namespace Cracking.Test
 {
     [TestClass]
-    public class LinkedListsTest
+    public class LlTest
     {
         #region init
         private readonly LinkedLists _target;
 
-        public LinkedListsTest()
+        public LlTest()
         {
             _target = new LinkedLists();
         }

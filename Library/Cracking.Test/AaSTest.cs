@@ -3,12 +3,12 @@
 namespace Cracking.Test
 {
     [TestClass]
-    public class ArraysAndStringsTest
+    public class AaSTest
     {
         #region init
         private readonly ArraysAndStrings _target;
 
-        public ArraysAndStringsTest()
+        public AaSTest()
         {
             _target = new ArraysAndStrings();
         }

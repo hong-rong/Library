@@ -53,11 +53,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ArraysAndStringsTest.cs" />
+    <Compile Include="AaSTest.cs" />
     <Compile Include="DpTest.cs" />
-    <Compile Include="LinkedListsTest.cs" />
+    <Compile Include="LlTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackAndQueueTest.cs" />
+    <Compile Include="SaQTest.cs" />
     <Compile Include="TrTest.cs" />
   </ItemGroup>
   <ItemGroup>
