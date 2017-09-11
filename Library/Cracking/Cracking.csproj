@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArraysAndStrings.cs" />
+    <Compile Include="AaS.cs" />
     <Compile Include="Dp.cs" />
-    <Compile Include="LinkedLists.cs" />
+    <Compile Include="Ll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackAndQueue.cs" />
+    <Compile Include="SaQ.cs" />
     <Compile Include="Tr.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
