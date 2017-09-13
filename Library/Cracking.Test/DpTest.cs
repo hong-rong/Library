@@ -22,6 +22,45 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             _target = new Dp();
         }
 
+        [TestMethod]
+        public void PaintFillTest()
+        {
+            var screen = new Color[,] 
+            {
+                {Color.Black}
+            };
+            _target.PaintFill(screen, 0, 0, Color.White);
+            Assert.AreEqual(Color.White, screen[0, 0]);
+
+            screen = new Color[,] 
+            {
+                {Color.Black, Color.White, Color.Red, Color.Yellow},
+                {Color.White, Color.Red, Color.Yellow, Color.Green},
+                {Color.Red, Color.Yellow, Color.Green, Color.Black},
+                {Color.Yellow, Color.Green, Color.Black, Color.Red},
+            };
+            _target.PaintFill(screen, 1, 1, Color.Black);
+            Assert.AreEqual(Color.Black, screen[0, 0]);
+            Assert.AreEqual(Color.White, screen[0, 1]);
+            Assert.AreEqual(Color.Black, screen[0, 2]);
+            Assert.AreEqual(Color.Yellow, screen[0, 3]);
+
+            Assert.AreEqual(Color.White, screen[1, 0]);
+            Assert.AreEqual(Color.Black, screen[1, 1]);
+            Assert.AreEqual(Color.Yellow, screen[1, 2]);
+            Assert.AreEqual(Color.Green, screen[1, 3]);
+
+            Assert.AreEqual(Color.Black, screen[2, 0]);
+            Assert.AreEqual(Color.Yellow, screen[2, 1]);
+            Assert.AreEqual(Color.Green, screen[2, 2]);
+            Assert.AreEqual(Color.Black, screen[2, 3]);
+
+            Assert.AreEqual(Color.Yellow, screen[3, 0]);
+            Assert.AreEqual(Color.Green, screen[3, 1]);
+            Assert.AreEqual(Color.Black, screen[3, 2]);
+            Assert.AreEqual(Color.Black, screen[3, 3]);
+        }
+
         #region dp
 
         #region TrSetp
