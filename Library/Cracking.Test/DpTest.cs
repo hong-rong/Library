@@ -22,6 +22,37 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             _target = new Dp();
         }
 
+        //[TestMethod]
+        public void FindMagicIndexWithDupsTest()
+        {
+            var r = _target.FindMagicIndexWithDups(new[] { 0 });
+            Assert.AreEqual(0, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -1, 1 });
+            Assert.AreEqual(1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 0, 2, 3 });
+            Assert.AreEqual(0, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1 });
+            Assert.AreEqual(-1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1, 2, 3, 5 });
+            Assert.AreEqual(5, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+            Assert.AreEqual(-1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -5, -4, -2, -1 });
+            Assert.AreEqual(-1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 0, 0, 0, 0 });
+            Assert.AreEqual(0, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 3, 3, 3, 3 });
+            Assert.AreEqual(3, r);
+        }
+
         #region dp
 
         #region TrSetp
@@ -64,88 +95,7 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 
         #endregion
 
-        [TestMethod]
-        public void MultiplyByRecTest()
-        {
-            Assert.AreEqual(0, _target.MultiplyByRec(0, 1));
-            Assert.AreEqual(1, _target.MultiplyByRec(1, 1));
-            Assert.AreEqual(6, _target.MultiplyByRec(2, 3));
-            Assert.AreEqual(49, _target.MultiplyByRec(7, 7));
-            Assert.AreEqual(100, _target.MultiplyByRec(100, 1));
-            Assert.AreEqual(998001, _target.MultiplyByRec(999, 999));
-        }
-
-        [TestMethod]
-        public void MultiplyByRecWithMemoTest()
-        {
-            Assert.AreEqual(0, _target.MultiplyByRecWithMemo(0, 1));
-            Assert.AreEqual(1, _target.MultiplyByRecWithMemo(1, 1));
-            Assert.AreEqual(6, _target.MultiplyByRecWithMemo(2, 3));
-            Assert.AreEqual(49, _target.MultiplyByRecWithMemo(7, 7));
-            Assert.AreEqual(100, _target.MultiplyByRecWithMemo(100, 1));
-            Assert.AreEqual(998001, _target.MultiplyByRecWithMemo(999, 999));
-        }
-
-        [TestMethod]
-        public void GetAllSubsetsTest()
-        {
-            var list = new List<int> { 1, 2, 3 };
-            var all = _target.GetAllSubsetTest(list);
-            Assert.AreEqual(Math.Pow(2, list.Count) - 1, all.Count);
-            var largest = all.Single(i => i.Count == 3);
-            Assert.IsTrue(largest.Contains(1));
-            Assert.IsTrue(largest.Contains(2));
-            Assert.IsTrue(largest.Contains(3));
-            Assert.IsTrue(all.Count(i => i.Count == 1) == 3);
-            Assert.IsTrue(all.Count(i => i.Count == 2) == 3);
-        }
-
-        [TestMethod]
-        public void GetAllPermForUnqiueTest()
-        {
-            var expect = _target.GetAllPermForUnique_ByInsertion("123");
-            Assert.AreEqual(6, expect.Count);
-            Assert.IsTrue(expect.Contains("123"));
-            Assert.IsTrue(expect.Contains("132"));
-            Assert.IsTrue(expect.Contains("213"));
-            Assert.IsTrue(expect.Contains("231"));
-            Assert.IsTrue(expect.Contains("312"));
-            Assert.IsTrue(expect.Contains("321"));
-
-            expect = _target.GetAllPermForUnique_ByInsertion("12357");
-            Assert.AreEqual(120, expect.Count);
-        }
-
-        [TestMethod]
-        public void GetAllPermForDupTest()
-        {
-            var expect = _target.GetAllPermForDup("112");
-            Assert.AreEqual(3, expect.Count);
-            Assert.IsTrue(expect.Contains("112"));
-            Assert.IsTrue(expect.Contains("121"));
-            Assert.IsTrue(expect.Contains("211"));
-
-            expect = _target.GetAllPermForDup("1233");
-            Assert.AreEqual(12, expect.Count);
-        }
-
-        [TestMethod]
-        public void GetAllPermForUnique_ByPrefixTest()
-        {
-            var expect = _target.GetAllPermForUnique_ByPrefix("123");
-            Assert.AreEqual(6, expect.Count);
-            Assert.IsTrue(expect.Contains("123"));
-            Assert.IsTrue(expect.Contains("132"));
-            Assert.IsTrue(expect.Contains("213"));
-            Assert.IsTrue(expect.Contains("231"));
-            Assert.IsTrue(expect.Contains("312"));
-            Assert.IsTrue(expect.Contains("321"));
-
-            expect = _target.GetAllPermForUnique_ByPrefix("12357");
-            Assert.AreEqual(120, expect.Count);
-        }
-
-        #region find path test
+        #region robot path
 
         [TestMethod]
         public void FindPathTest()
@@ -260,32 +210,7 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 
         #endregion
 
-        [TestMethod]
-        public void CountCTest()
-        {
-            Assert.AreEqual(1, _target.CountC(1));
-            Assert.AreEqual(1, _target.CountC(4));
-            Assert.AreEqual(2, _target.CountC(5));
-            Assert.AreEqual(2, _target.CountC(6));
-            Assert.AreEqual(4, _target.CountC(10));
-            Assert.AreEqual(4, _target.CountC(11));
-            Assert.AreEqual(6, _target.CountC(15));
-        }
-
-        [TestMethod]
-        public void CountCMemoTest()
-        {
-            Assert.AreEqual(1, _target.CountCMemo(1));
-            Assert.AreEqual(1, _target.CountCMemo(4));
-            Assert.AreEqual(2, _target.CountCMemo(5));
-            Assert.AreEqual(2, _target.CountCMemo(6));
-            Assert.AreEqual(4, _target.CountCMemo(10));
-            Assert.AreEqual(4, _target.CountCMemo(11));
-            Assert.AreEqual(6, _target.CountCMemo(15));
-        }
-
-        #endregion
-
+        #region find magic index
         [TestMethod]
         public void FindMagicIndexTest()
         {
@@ -313,36 +238,130 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             r = _target.FindMagicIndex(new[] { 3, 4, 5, 6 });
             Assert.AreEqual(-1, r);
         }
+        #endregion
 
-        //[TestMethod]
-        public void FindMagicIndexWithDupsTest()
+        #region power set
+        [TestMethod]
+        public void GetAllSubsetsTest()
         {
-            var r = _target.FindMagicIndexWithDups(new[] { 0 });
-            Assert.AreEqual(0, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -1, 1 });
-            Assert.AreEqual(1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 0, 2, 3 });
-            Assert.AreEqual(0, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1 });
-            Assert.AreEqual(-1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1, 2, 3, 5 });
-            Assert.AreEqual(5, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 1, 2, 3, 4, 5, 6, 7, 8 });
-            Assert.AreEqual(-1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -5, -4, -2, -1 });
-            Assert.AreEqual(-1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 0, 0, 0, 0 });
-            Assert.AreEqual(0, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 3, 3, 3, 3 });
-            Assert.AreEqual(3, r);
+            var list = new List<int> { 1, 2, 3 };
+            var all = _target.GetAllSubsetTest(list);
+            Assert.AreEqual(Math.Pow(2, list.Count) - 1, all.Count);
+            var largest = all.Single(i => i.Count == 3);
+            Assert.IsTrue(largest.Contains(1));
+            Assert.IsTrue(largest.Contains(2));
+            Assert.IsTrue(largest.Contains(3));
+            Assert.IsTrue(all.Count(i => i.Count == 1) == 3);
+            Assert.IsTrue(all.Count(i => i.Count == 2) == 3);
         }
+        #endregion
+
+        #region rec multiply
+        [TestMethod]
+        public void MultiplyByRecTest()
+        {
+            Assert.AreEqual(0, _target.MultiplyByRec(0, 1));
+            Assert.AreEqual(1, _target.MultiplyByRec(1, 1));
+            Assert.AreEqual(6, _target.MultiplyByRec(2, 3));
+            Assert.AreEqual(49, _target.MultiplyByRec(7, 7));
+            Assert.AreEqual(100, _target.MultiplyByRec(100, 1));
+            Assert.AreEqual(998001, _target.MultiplyByRec(999, 999));
+        }
+
+        [TestMethod]
+        public void MultiplyByRecWithMemoTest()
+        {
+            Assert.AreEqual(0, _target.MultiplyByRecWithMemo(0, 1));
+            Assert.AreEqual(1, _target.MultiplyByRecWithMemo(1, 1));
+            Assert.AreEqual(6, _target.MultiplyByRecWithMemo(2, 3));
+            Assert.AreEqual(49, _target.MultiplyByRecWithMemo(7, 7));
+            Assert.AreEqual(100, _target.MultiplyByRecWithMemo(100, 1));
+            Assert.AreEqual(998001, _target.MultiplyByRecWithMemo(999, 999));
+        }
+        #endregion
+
+        //hanoi
+
+        #region perm
+        [TestMethod]
+        public void GetAllPermForUnqiueTest()
+        {
+            var expect = _target.GetAllPermForUnique_ByInsertion("123");
+            Assert.AreEqual(6, expect.Count);
+            Assert.IsTrue(expect.Contains("123"));
+            Assert.IsTrue(expect.Contains("132"));
+            Assert.IsTrue(expect.Contains("213"));
+            Assert.IsTrue(expect.Contains("231"));
+            Assert.IsTrue(expect.Contains("312"));
+            Assert.IsTrue(expect.Contains("321"));
+
+            expect = _target.GetAllPermForUnique_ByInsertion("12357");
+            Assert.AreEqual(120, expect.Count);
+        }
+
+        [TestMethod]
+        public void GetAllPermForUnique_ByPrefixTest()
+        {
+            var expect = _target.GetAllPermForUnique_ByPrefix("123");
+            Assert.AreEqual(6, expect.Count);
+            Assert.IsTrue(expect.Contains("123"));
+            Assert.IsTrue(expect.Contains("132"));
+            Assert.IsTrue(expect.Contains("213"));
+            Assert.IsTrue(expect.Contains("231"));
+            Assert.IsTrue(expect.Contains("312"));
+            Assert.IsTrue(expect.Contains("321"));
+
+            expect = _target.GetAllPermForUnique_ByPrefix("12357");
+            Assert.AreEqual(120, expect.Count);
+        }
+
+        #endregion
+
+        #region perm with dups
+        [TestMethod]
+        public void GetAllPermForDupTest()
+        {
+            var expect = _target.GetAllPermForDup("112");
+            Assert.AreEqual(3, expect.Count);
+            Assert.IsTrue(expect.Contains("112"));
+            Assert.IsTrue(expect.Contains("121"));
+            Assert.IsTrue(expect.Contains("211"));
+
+            expect = _target.GetAllPermForDup("1233");
+            Assert.AreEqual(12, expect.Count);
+        }
+        #endregion
+
+        //parens
+
+        //paint fill
+
+        #region coins
+        [TestMethod]
+        public void CountCTest()
+        {
+            Assert.AreEqual(1, _target.CountC(1));
+            Assert.AreEqual(1, _target.CountC(4));
+            Assert.AreEqual(2, _target.CountC(5));
+            Assert.AreEqual(2, _target.CountC(6));
+            Assert.AreEqual(4, _target.CountC(10));
+            Assert.AreEqual(4, _target.CountC(11));
+            Assert.AreEqual(6, _target.CountC(15));
+        }
+
+        [TestMethod]
+        public void CountCMemoTest()
+        {
+            Assert.AreEqual(1, _target.CountCMemo(1));
+            Assert.AreEqual(1, _target.CountCMemo(4));
+            Assert.AreEqual(2, _target.CountCMemo(5));
+            Assert.AreEqual(2, _target.CountCMemo(6));
+            Assert.AreEqual(4, _target.CountCMemo(10));
+            Assert.AreEqual(4, _target.CountCMemo(11));
+            Assert.AreEqual(6, _target.CountCMemo(15));
+        }
+        #endregion
+
+        #endregion
     }
 }

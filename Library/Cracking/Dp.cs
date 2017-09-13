@@ -65,48 +65,6 @@ namespace Cracking
         }
         #endregion
 
-        #region recursive multiply
-
-        public int MultiplyByRec(int a, int b)
-        {
-            int small = a > b ? b : a;
-            int large = a > b ? a : b;
-            return AddByRec(small, large);
-        }
-
-        private int AddByRec(int s, int l)
-        {
-            if (s == 0) return 0;
-            if (s == 1) return l;
-            int h = s >> 1;
-            var left = AddByRec(h, l);
-            var right = AddByRec(s - h, l);
-            return left + right;
-        }
-
-        public int MultiplyByRecWithMemo(int a, int b)
-        {
-            int small = a > b ? b : a;
-            int large = a > b ? a : b;
-            var memo = new Dictionary<int, int>();
-            return AddByRecWithMemo(memo, small, large);
-        }
-
-        private int AddByRecWithMemo(Dictionary<int, int> memo, int s, int l)
-        {
-            if (s == 0) return 0;
-            if (s == 1) return l;
-            if (memo.ContainsKey(s)) return memo[s];
-            int h = s >> 1;
-            int left = AddByRecWithMemo(memo, h, l);
-            int right = AddByRecWithMemo(memo, s - h, l);
-            int sum = left + right;
-            memo.Add(s, sum);
-            return sum;
-        }
-
-        #endregion
-
         #region robot find path
         public Stack<Point> FindPath(int[][] grid)
         {
@@ -172,7 +130,24 @@ namespace Cracking
 
         #endregion
 
-        #region all subsets
+        #region find magic index
+        public int FindMagicIndex(int[] arr)
+        {
+            if (arr == null) throw new ArgumentNullException();
+            return FindMagicIndex(arr, 0, arr.Length - 1);
+        }
+
+        private int FindMagicIndex(int[] arr, int l, int h)
+        {
+            if (l > h || arr[h] < l || arr[l] > h) return -1;
+            int m = (l + h) / 2;
+            if (arr[m] > m) return FindMagicIndex(arr, l, m - 1);
+            if (arr[m] < m) return FindMagicIndex(arr, m + 1, h);
+            return m;
+        }
+        #endregion
+
+        #region power set
 
         public List<List<T>> GetAllSubsetTest<T>(List<T> list)
         {
@@ -212,22 +187,147 @@ namespace Cracking
         }
         #endregion
 
-        #region find magic index
-        public int FindMagicIndex(int[] arr)
+        #region recursive multiply
+
+        public int MultiplyByRec(int a, int b)
         {
-            if (arr == null) throw new ArgumentNullException();
-            return FindMagicIndex(arr, 0, arr.Length - 1);
+            int small = a > b ? b : a;
+            int large = a > b ? a : b;
+            return AddByRec(small, large);
         }
 
-        private int FindMagicIndex(int[] arr, int l, int h)
+        private int AddByRec(int s, int l)
         {
-            if (l > h || arr[h] < l || arr[l] > h) return -1;
-            int m = (l + h) / 2;
-            if (arr[m] > m) return FindMagicIndex(arr, l, m - 1);
-            if (arr[m] < m) return FindMagicIndex(arr, m + 1, h);
-            return m;
+            if (s == 0) return 0;
+            if (s == 1) return l;
+            int h = s >> 1;
+            var left = AddByRec(h, l);
+            var right = AddByRec(s - h, l);
+            return left + right;
+        }
+
+        public int MultiplyByRecWithMemo(int a, int b)
+        {
+            int small = a > b ? b : a;
+            int large = a > b ? a : b;
+            var memo = new Dictionary<int, int>();
+            return AddByRecWithMemo(memo, small, large);
+        }
+
+        private int AddByRecWithMemo(Dictionary<int, int> memo, int s, int l)
+        {
+            if (s == 0) return 0;
+            if (s == 1) return l;
+            if (memo.ContainsKey(s)) return memo[s];
+            int h = s >> 1;
+            int left = AddByRecWithMemo(memo, h, l);
+            int right = AddByRecWithMemo(memo, s - h, l);
+            int sum = left + right;
+            memo.Add(s, sum);
+            return sum;
+        }
+
+        #endregion
+
+        //hanoi
+
+        #region perm
+
+        #region all perm for unique by insertion
+        //12: 12,21 ->312,132,123;321,231,213
+        //123: 123,132;213,232;312,321
+        public List<string> GetAllPermForUnique_ByInsertion(string s)
+        {
+            if (string.IsNullOrEmpty(s)) throw new ArgumentNullException();
+            var all = GetPermForUnique_ByInsertion(s);
+            Debug.WriteLine(string.Join(", ", all));
+            Debug.WriteLine("total: {0}", all.Count);
+            return all;
+        }
+
+        private List<string> GetPermForUnique_ByInsertion(string s)
+        {
+            if (s.Length == 1) return new List<string> { s };
+            var all = new List<string>();
+            var first = s.Substring(0, 1);
+            var rest = s.Substring(1, s.Length - 1);
+            var subPerms = GetPermForUnique_ByInsertion(rest);
+            for (int i = 0; i < subPerms.Count; i++)
+            {
+                for (int j = 0; j <= subPerms[i].Length; j++)
+                {
+                    var temp = subPerms[i].Insert(j, first);
+                    all.Add(temp);
+                }
+            }
+            return all;
         }
         #endregion
+
+        #region all perm for unique by prefix
+        public List<string> GetAllPermForUnique_ByPrefix(string s)
+        {
+            if (string.IsNullOrEmpty(s)) throw new ArgumentNullException();
+            var all = GetPermForUnique_ByPrefix(s);
+            Debug.WriteLine(string.Join(", ", all));
+            Debug.WriteLine("total: {0}", all.Count);
+            return all;
+        }
+
+        private List<string> GetPermForUnique_ByPrefix(string s)
+        {
+            if (s.Length == 1) return new List<string> { s };
+            var all = new List<string>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                var subPerms = GetPermForUnique_ByPrefix(s.Remove(i, 1));
+                for (int j = 0; j < subPerms.Count; j++)
+                {
+                    var temp = string.Format("{0}{1}", s[i], subPerms[j]);
+                    all.Add(temp);
+                }
+            }
+            return all;
+        }
+        #endregion
+
+        #endregion
+
+        #region perm with dups
+        public List<string> GetAllPermForDup(string s)
+        {
+            if (string.IsNullOrEmpty(s)) throw new ArgumentNullException();
+            var all = GetPermForDup(s);
+            Debug.WriteLine(string.Join(", ", all));
+            Debug.WriteLine("total: {0}", all.Count);
+            return all;
+        }
+
+        private List<string> GetPermForDup(string s)
+        {
+            if (s.Length == 1) return new List<string> { s };
+            var all = new HashSet<string>();
+            var first = s.Substring(0, 1);
+            var rest = s.Substring(1);
+            var subPerms = GetPermForDup(rest);
+            for (int i = 0; i < subPerms.Count; i++)
+            {
+                for (int j = 0; j <= subPerms[i].Length; j++)
+                {
+                    var temp = subPerms[i].Insert(j, first);
+                    if (!all.Contains(temp))
+                    {
+                        all.Add(temp);
+                    }
+                }
+            }
+            return all.ToList();
+        }
+        #endregion
+
+        //parens
+
+        //paint fill
 
         #region coins
         //25*4, 0 others
@@ -295,96 +395,6 @@ namespace Cracking
             }
             memo[amount, index] = sum;
             return sum;
-        }
-        #endregion
-
-        #region all perm for unique by insertion
-        //12: 12,21 ->312,132,123;321,231,213
-        //123: 123,132;213,232;312,321
-        public List<string> GetAllPermForUnique_ByInsertion(string s)
-        {
-            if (string.IsNullOrEmpty(s)) throw new ArgumentNullException();
-            var all = GetPermForUnique_ByInsertion(s);
-            Debug.WriteLine(string.Join(", ", all));
-            Debug.WriteLine("total: {0}", all.Count);
-            return all;
-        }
-
-        private List<string> GetPermForUnique_ByInsertion(string s)
-        {
-            if (s.Length == 1) return new List<string> { s };
-            var all = new List<string>();
-            var first = s.Substring(0, 1);
-            var rest = s.Substring(1, s.Length - 1);
-            var subPerms = GetPermForUnique_ByInsertion(rest);
-            for (int i = 0; i < subPerms.Count; i++)
-            {
-                for (int j = 0; j <= subPerms[i].Length; j++)
-                {
-                    var temp = subPerms[i].Insert(j, first);
-                    all.Add(temp);
-                }
-            }
-            return all;
-        }
-        #endregion
-
-        #region all perm for unique by prefix
-        public List<string> GetAllPermForUnique_ByPrefix(string s)
-        {
-            if (string.IsNullOrEmpty(s)) throw new ArgumentNullException();
-            var all = GetPermForUnique_ByPrefix(s);
-            Debug.WriteLine(string.Join(", ", all));
-            Debug.WriteLine("total: {0}", all.Count);
-            return all;
-        }
-
-        private List<string> GetPermForUnique_ByPrefix(string s)
-        {
-            if (s.Length == 1) return new List<string> { s };
-            var all = new List<string>();
-            for (int i = 0; i < s.Length; i++)
-            {
-                var subPerms = GetPermForUnique_ByPrefix(s.Remove(i, 1));
-                for (int j = 0; j < subPerms.Count; j++)
-                {
-                    var temp = string.Format("{0}{1}", s[i], subPerms[j]);
-                    all.Add(temp);
-                }
-            }
-            return all;
-        }
-        #endregion
-
-        #region perm with dups
-        public List<string> GetAllPermForDup(string s)
-        {
-            if (string.IsNullOrEmpty(s)) throw new ArgumentNullException();
-            var all = GetPermForDup(s);
-            Debug.WriteLine(string.Join(", ", all));
-            Debug.WriteLine("total: {0}", all.Count);
-            return all;
-        }
-
-        private List<string> GetPermForDup(string s)
-        {
-            if (s.Length == 1) return new List<string> { s };
-            var all = new HashSet<string>();
-            var first = s.Substring(0, 1);
-            var rest = s.Substring(1);
-            var subPerms = GetPermForDup(rest);
-            for (int i = 0; i < subPerms.Count; i++)
-            {
-                for (int j = 0; j <= subPerms[i].Length; j++)
-                {
-                    var temp = subPerms[i].Insert(j, first);
-                    if (!all.Contains(temp))
-                    {
-                        all.Add(temp);
-                    }
-                }
-            }
-            return all.ToList();
         }
         #endregion
 
