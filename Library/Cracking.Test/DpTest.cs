@@ -10,47 +10,16 @@ using Cracking;
 
 namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 {
-  
+
     [TestClass]
     public class DpTest
     {
         private Dp _target;
-        
+
         [TestInitialize]
         public void Init()
         {
             _target = new Dp();
-        }
-
-        //[TestMethod]
-        public void FindMagicIndexWithDupsTest()
-        {
-            var r = _target.FindMagicIndexWithDups(new[] { 0 });
-            Assert.AreEqual(0, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -1, 1 });
-            Assert.AreEqual(1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 0, 2, 3 });
-            Assert.AreEqual(0, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1 });
-            Assert.AreEqual(-1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1, 2, 3, 5 });
-            Assert.AreEqual(5, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 1, 2, 3, 4, 5, 6, 7, 8 });
-            Assert.AreEqual(-1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { -5, -4, -2, -1 });
-            Assert.AreEqual(-1, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 0, 0, 0, 0 });
-            Assert.AreEqual(0, r);
-
-            r = _target.FindMagicIndexWithDups(new[] { 3, 3, 3, 3 });
-            Assert.AreEqual(3, r);
         }
 
         #region dp
@@ -237,6 +206,40 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 
             r = _target.FindMagicIndex(new[] { 3, 4, 5, 6 });
             Assert.AreEqual(-1, r);
+        }
+
+        [TestMethod]
+        public void FindMagicIndexWithDupsTest()
+        {
+            var r = _target.FindMagicIndexWithDups(new[] { 0 });
+            Assert.AreEqual(0, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -1, 1 });
+            Assert.AreEqual(1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 0, 2, 3 });
+            Assert.AreEqual(0, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1 });
+            Assert.AreEqual(-1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -1, 0, 1, 2, 3, 5 });
+            Assert.AreEqual(5, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+            Assert.AreEqual(-1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -5, -4, -2, -1 });
+            Assert.AreEqual(-1, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 0, 0, 0, 0 });
+            Assert.AreEqual(0, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { 3, 3, 3, 3 });
+            Assert.AreEqual(3, r);
+
+            r = _target.FindMagicIndexWithDups(new[] { -10, -5, 2, 2, 2, 3, 4, 7, 9, 12, 13 });
+            Assert.AreEqual(2, r);
         }
         #endregion
 

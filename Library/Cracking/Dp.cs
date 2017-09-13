@@ -8,20 +8,7 @@ namespace Cracking
 {
     public class Dp
     {
-        public int FindMagicIndexWithDups(int[] arr)
-        {
-            if (arr == null) throw new ArgumentNullException();
-            return FindMagicIndexWithDups(arr, 0, arr.Length - 1);
-        }
 
-        private int FindMagicIndexWithDups(int[] arr, int l, int h)
-        {
-            if (l > h) return -1;
-            int m = (l + h) / 2;
-            if (arr[m] > m) return FindMagicIndexWithDups(arr, l, m - 1);
-            if (arr[m] < m) return FindMagicIndexWithDups(arr, m + 1, h);
-            return m;
-        }
 
         #region dp
 
@@ -139,11 +126,33 @@ namespace Cracking
 
         private int FindMagicIndex(int[] arr, int l, int h)
         {
-            if (l > h || arr[h] < l || arr[l] > h) return -1;
+            if (l > h) return -1;
             int m = (l + h) / 2;
             if (arr[m] > m) return FindMagicIndex(arr, l, m - 1);
             if (arr[m] < m) return FindMagicIndex(arr, m + 1, h);
             return m;
+        }
+
+        //with duplicate elements
+        public int FindMagicIndexWithDups(int[] arr)
+        {
+            if (arr == null) throw new ArgumentNullException();
+            return FindMagicIndexWithDups(arr, 0, arr.Length - 1);
+        }
+
+        private int FindMagicIndexWithDups(int[] arr, int l, int h)
+        {
+            if (l > h) return -1;
+            int m = (l + h) / 2;
+            int mValue = arr[m];
+            if (m == mValue) return m;
+
+            int leftIndex = Math.Min(m - 1, mValue);
+            int leftValue = FindMagicIndexWithDups(arr, l, leftIndex);
+            if (leftValue >= 0) return leftValue;
+
+            int rightIndex = Math.Max(m + 1, mValue);
+            return FindMagicIndexWithDups(arr, rightIndex, h);
         }
         #endregion
 
