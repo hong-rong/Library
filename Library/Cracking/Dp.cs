@@ -8,26 +8,6 @@ namespace Cracking
 {
     public class Dp
     {
-        public void PaintFill(Color[,] screen, int r, int c, Color color)
-        {
-            ReplaceColor(screen, r, c, screen[r, c], color);
-        }
-
-        private void ReplaceColor(Color[,] screen, int r, int c, Color oColor, Color nColor)
-        {
-            if (r < 0 || r >= screen.GetLength(0) || c < 0 || c >= screen.GetLength(1)) return;
-
-            if (screen[r, c] == oColor)
-            {
-                screen[r, c] = nColor;
-
-                ReplaceColor(screen, r - 1, c, oColor, nColor);
-                ReplaceColor(screen, r + 1, c, oColor, nColor);
-                ReplaceColor(screen, r, c - 1, oColor, nColor);
-                ReplaceColor(screen, r, c + 1, oColor, nColor);
-            }
-        }
-
         #region dp
 
         #region TrStep
@@ -354,7 +334,30 @@ namespace Cracking
 
         //parens
 
-        //paint fill
+        #region paint fill
+        public void PaintFill(Color[,] screen, int r, int c, Color color)
+        {
+            if (screen[r, c] != color)
+            {
+                ReplaceColor(screen, r, c, screen[r, c], color);
+            }
+        }
+
+        private void ReplaceColor(Color[,] screen, int r, int c, Color oColor, Color nColor)
+        {
+            if (r < 0 || r >= screen.GetLength(0) || c < 0 || c >= screen.GetLength(1)) return;
+
+            if (screen[r, c] == oColor)
+            {
+                screen[r, c] = nColor;
+
+                ReplaceColor(screen, r - 1, c, oColor, nColor);
+                ReplaceColor(screen, r + 1, c, oColor, nColor);
+                ReplaceColor(screen, r, c - 1, oColor, nColor);
+                ReplaceColor(screen, r, c + 1, oColor, nColor);
+            }
+        }
+        #endregion
 
         #region coins
         //25*4, 0 others
