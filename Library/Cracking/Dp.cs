@@ -332,7 +332,151 @@ namespace Cracking
         }
         #endregion
 
-        //parens
+        #region parens
+        
+        #region with duplicates solution
+        public List<string> ParensWithDupsSubsetSolution(int n)
+        {
+            #region demo
+            //((())), (()()), (())(), ()(()) ,()()()
+            //(())->()(()), (()()), ((())), (())()
+            //()()->()()(), (())()*, ()(())*, ()()()*
+            #endregion
+            return BuildParensWithDupsSubsetSolution(n);
+        }
+
+        private List<string> BuildParensWithDupsSubsetSolution(int n)
+        {
+            if (n == 1) return new List<string>() { "()" };
+
+            var list = BuildParensWithDupsSubsetSolution(n - 1);
+            HashSet<string> set = new HashSet<string>();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                string s = string.Format("{0}{1}", "()", list[i]);
+                if (!set.Contains(s))
+                {
+                    set.Add(s);
+                }
+                s = string.Format("{0}{1}", list[i], "()");
+                if (!set.Contains(s))
+                {
+                    set.Add(s);
+                }
+                for (int j = 0; j < list[i].Length; j++)
+                {
+                    if (list[i][j] == '(')
+                    {
+                        s = list[i].Insert(j + 1, "()");
+                        if (!set.Contains(s))
+                        {
+                            set.Add(s);
+                        }
+                    }
+                }
+            }
+
+            return set.ToList();
+        }
+        #endregion
+
+        #region build from scratch solution
+        public List<string> BuildParens1(int count)
+        {
+            char[] str = new char[count * 2];
+            List<string> list = new List<string>();
+            BuildParens1(list, count, count, str, 0);
+            return list;
+        }
+
+        private void BuildParens1(List<string> list, int leftRem, int rightRem, char[] str, int index)
+        {
+            if (leftRem < 0 || rightRem < leftRem)
+            {
+                Debug.WriteLine(new string(str).Replace("\0", string.Empty));
+                return;// invalid state
+            }
+
+            if (leftRem == 0 && rightRem == 0)
+            {/*Out of left and right parentheses */
+                list.Add(new string(str));
+            }
+            else
+            {
+                str[index] = '('; // Add left and recurse
+                BuildParens1(list, leftRem - 1, rightRem, str, index + 1);
+
+                str[index] = ')'; // Add right and recurse
+                BuildParens1(list, leftRem, rightRem - 1, str, index + 1);
+            }
+        }
+
+        public List<string> BuildParens1_Variant(int count)
+        {
+            char[] str = new char[count * 2];
+            List<string> list = new List<string>();
+            BuildParens1_Variant(list, count, count, str, 0);
+            return list;
+        }
+
+        private void BuildParens1_Variant(List<string> list, int leftRem, int rightRem, char[] str, int index)
+        {
+            if (leftRem == 0 && rightRem == 0)
+            {
+                list.Add(new string(str));
+            }
+            else
+            {
+                str[index] = '(';
+                if (leftRem > 0)
+                {
+                    BuildParens1_Variant(list, leftRem - 1, rightRem, str, index + 1);
+                }
+
+                str[index] = ')';
+                if (rightRem > leftRem)
+                {
+                    BuildParens1_Variant(list, leftRem, rightRem - 1, str, index + 1);
+                }
+            }
+        }
+
+        public List<string> BuildParens2(int count)
+        {
+            List<string> list = new List<string>();
+            BuildParens2(list, "", count, count);
+            return list;
+        }
+
+        /// <summary>
+        /// easier to understand than BuildParens1()
+        /// </summary>
+        private void BuildParens2(List<string> list, string output, int open, int close)
+        {
+            if (open == 0 && close == 0)
+            {
+                list.Add(output);
+            }
+            else
+            {
+                if (open > 0)
+                {
+                    BuildParens2(list, output + "(", open - 1, close);
+                }
+                if (close > open)
+                {
+                    BuildParens2(list, output + ")", open, close - 1);
+                }
+                //else 
+                //{
+                //    Debug.WriteLine(output);
+                //}
+            }
+        }
+        #endregion
+
+        #endregion
 
         #region paint fill
         public void PaintFill(Color[,] screen, int r, int c, Color color)

@@ -335,7 +335,142 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         }
         #endregion
 
-        //parens
+        #region parens
+        [TestMethod]
+        public void BuildParens1Test()
+        {
+            var pairs = _target.BuildParens1(1);
+            Assert.AreEqual(1, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()"));
+
+            pairs = _target.BuildParens1(2);
+            Assert.AreEqual(2, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()()"));
+            Assert.IsTrue(pairs.Contains("(())"));
+
+            pairs = _target.BuildParens1(3);
+            Assert.AreEqual(5, pairs.Count);
+            Assert.IsTrue(pairs.Contains("((()))"));
+            Assert.IsTrue(pairs.Contains("(()())"));
+            Assert.IsTrue(pairs.Contains("(())()"));
+            Assert.IsTrue(pairs.Contains("()(())"));
+            Assert.IsTrue(pairs.Contains("()()()"));
+
+            pairs = _target.BuildParens1(4);
+            Assert.AreEqual(14, pairs.Count);
+            Assert.IsTrue(pairs.Contains("(((())))"));
+            Assert.IsTrue(pairs.Contains("((()()))"));
+            Assert.IsTrue(pairs.Contains("((())())"));
+            Assert.IsTrue(pairs.Contains("((()))()"));
+            Assert.IsTrue(pairs.Contains("(()(()))"));
+            Assert.IsTrue(pairs.Contains("(()()())"));
+            Assert.IsTrue(pairs.Contains("(()())()"));
+            Assert.IsTrue(pairs.Contains("(())(())"));
+            Assert.IsTrue(pairs.Contains("(())()()"));
+            Assert.IsTrue(pairs.Contains("()((()))"));
+            Assert.IsTrue(pairs.Contains("()(()())"));
+            Assert.IsTrue(pairs.Contains("()(())()"));
+            Assert.IsTrue(pairs.Contains("()()(())"));
+            Assert.IsTrue(pairs.Contains("()()()()"));
+        }
+
+        [TestMethod]
+        public void BuildParens1_VariantTest()
+        {
+            var pairs = _target.BuildParens1_Variant(1);
+            Assert.AreEqual(1, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()"));
+
+            pairs = _target.BuildParens1_Variant(2);
+            Assert.AreEqual(2, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()()"));
+            Assert.IsTrue(pairs.Contains("(())"));
+
+            pairs = _target.BuildParens1_Variant(3);
+            Assert.AreEqual(5, pairs.Count);
+            Assert.IsTrue(pairs.Contains("((()))"));
+            Assert.IsTrue(pairs.Contains("(()())"));
+            Assert.IsTrue(pairs.Contains("(())()"));
+            Assert.IsTrue(pairs.Contains("()(())"));
+            Assert.IsTrue(pairs.Contains("()()()"));
+
+            pairs = _target.BuildParens1_Variant(4);
+            Assert.AreEqual(14, pairs.Count);
+            Assert.IsTrue(pairs.Contains("(((())))"));
+            Assert.IsTrue(pairs.Contains("((()()))"));
+            Assert.IsTrue(pairs.Contains("((())())"));
+            Assert.IsTrue(pairs.Contains("((()))()"));
+            Assert.IsTrue(pairs.Contains("(()(()))"));
+            Assert.IsTrue(pairs.Contains("(()()())"));
+            Assert.IsTrue(pairs.Contains("(()())()"));
+            Assert.IsTrue(pairs.Contains("(())(())"));
+            Assert.IsTrue(pairs.Contains("(())()()"));
+            Assert.IsTrue(pairs.Contains("()((()))"));
+            Assert.IsTrue(pairs.Contains("()(()())"));
+            Assert.IsTrue(pairs.Contains("()(())()"));
+            Assert.IsTrue(pairs.Contains("()()(())"));
+            Assert.IsTrue(pairs.Contains("()()()()"));
+        }
+
+        [TestMethod]
+        public void BuildParens2Test()
+        {
+            var pairs = _target.BuildParens2(1);
+            Assert.AreEqual(1, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()"));
+
+            pairs = _target.BuildParens2(2);
+            Assert.AreEqual(2, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()()"));
+            Assert.IsTrue(pairs.Contains("(())"));
+
+            pairs = _target.BuildParens2(3);
+            Assert.AreEqual(5, pairs.Count);
+            Assert.IsTrue(pairs.Contains("((()))"));
+            Assert.IsTrue(pairs.Contains("(()())"));
+            Assert.IsTrue(pairs.Contains("(())()"));
+            Assert.IsTrue(pairs.Contains("()(())"));
+            Assert.IsTrue(pairs.Contains("()()()"));
+
+            pairs = _target.BuildParens2(4);
+            Assert.AreEqual(14, pairs.Count);
+            Assert.IsTrue(pairs.Contains("(((())))"));
+            Assert.IsTrue(pairs.Contains("((()()))"));
+            Assert.IsTrue(pairs.Contains("((())())"));
+            Assert.IsTrue(pairs.Contains("((()))()"));
+            Assert.IsTrue(pairs.Contains("(()(()))"));
+            Assert.IsTrue(pairs.Contains("(()()())"));
+            Assert.IsTrue(pairs.Contains("(()())()"));
+            Assert.IsTrue(pairs.Contains("(())(())"));
+            Assert.IsTrue(pairs.Contains("(())()()"));
+            Assert.IsTrue(pairs.Contains("()((()))"));
+            Assert.IsTrue(pairs.Contains("()(()())"));
+            Assert.IsTrue(pairs.Contains("()(())()"));
+            Assert.IsTrue(pairs.Contains("()()(())"));
+            Assert.IsTrue(pairs.Contains("()()()()"));
+        }
+
+        [TestMethod]
+        public void ParensWithDupsSubsetTest()
+        {
+            var pairs = _target.ParensWithDupsSubsetSolution(1);
+            Assert.AreEqual(1, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()"));
+
+            pairs = _target.ParensWithDupsSubsetSolution(2);
+            Assert.AreEqual(2, pairs.Count);
+            Assert.IsTrue(pairs.Contains("()()"));
+            Assert.IsTrue(pairs.Contains("(())"));
+
+            pairs = _target.ParensWithDupsSubsetSolution(3);
+            Assert.AreEqual(5, pairs.Count);
+            Assert.IsTrue(pairs.Contains("((()))"));
+            Assert.IsTrue(pairs.Contains("(()())"));
+            Assert.IsTrue(pairs.Contains("(())()"));
+            Assert.IsTrue(pairs.Contains("()(())"));
+            Assert.IsTrue(pairs.Contains("()()()"));
+        }
+        #endregion
 
         #region paint fill
         [TestMethod]
