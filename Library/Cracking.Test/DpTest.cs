@@ -283,7 +283,67 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         }
         #endregion
 
-        //hanoi
+        #region hanoi
+        [TestMethod]
+        public void MoveHanTest()
+        {
+            int n = 1;
+            var r = _target.MoveHan(n);
+            for (int i = 0; i < n; i++)
+            {
+                Assert.AreEqual(i + 1, r[r.GetLength(0) - 1, i]);
+            }
+            for (int i = 0; i < r.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Assert.AreEqual(0, r[i, j]);
+                }
+            }
+
+            n = 2;
+            r = _target.MoveHan(n);
+            for (int i = 0; i < n; i++)
+            {
+                Assert.AreEqual(i + 1, r[r.GetLength(0) - 1, i]);
+            }
+            for (int i = 0; i < r.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Assert.AreEqual(0, r[i, j]);
+                }
+            }
+
+            n = 3;
+            r = _target.MoveHan(n);
+            for (int i = 0; i < n; i++)
+            {
+                Assert.AreEqual(i + 1, r[r.GetLength(0) - 1, i]);
+            }
+            for (int i = 0; i < r.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Assert.AreEqual(0, r[i, j]);
+                }
+            }
+
+            n = 13;
+            r = _target.MoveHan(n);
+            for (int i = 0; i < n; i++)
+            {
+                Assert.AreEqual(i + 1, r[r.GetLength(0) - 1, i]);
+            }
+            for (int i = 0; i < r.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Assert.AreEqual(0, r[i, j]);
+                }
+            }
+        }
+        #endregion
 
         #region perm
         [TestMethod]

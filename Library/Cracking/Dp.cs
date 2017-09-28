@@ -8,6 +8,7 @@ namespace Cracking
 {
     public class Dp
     {
+
         #region dp
 
         #region TrStep
@@ -236,7 +237,45 @@ namespace Cracking
 
         #endregion
 
-        //hanoi
+        #region hanoi
+        public int[,] MoveHan(int n)
+        {
+            int[,] t = new int[3, n];
+            for (int i = 0; i < n; i++)
+            {
+                t[0, i] = i + 1;
+            }
+            MoveHan(t, 0, 2, 1, n);
+            return t;
+        }
+
+        private void MoveHan(int[,] t, int from, int to, int empty, int n)
+        {
+            if (n == 1)
+            {
+                t[to, n - 1] = t[from, n - 1];
+                t[from, n - 1] = 0;//clean for testing purpose, same for all following cleaning
+            }
+            else if (n == 2)
+            {
+                t[empty, n - 2] = t[from, n - 2];
+                t[from, n - 2] = 0;
+
+                t[to, n - 1] = t[from, n - 1];
+                t[from, n - 1] = 0;
+
+                t[to, n - 2] = t[empty, n - 2];
+                t[empty, n - 2] = 0;
+            }
+            else
+            {
+                MoveHan(t, from, empty, to, n - 1);
+                t[to, n - 1] = t[from, n - 1];
+                t[from, n - 1] = 0;
+                MoveHan(t, empty, to, from, n - 1);
+            }
+        }
+        #endregion
 
         #region perm
 
