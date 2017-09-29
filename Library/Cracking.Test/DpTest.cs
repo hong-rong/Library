@@ -610,6 +610,18 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         }
         #endregion
 
+        #region eight queen
+        [TestMethod]
+        public void EightQueenTest()
+        {
+            int[] b = _target.EightQueen(8);
+            for (int i = b.Length - 1; i > 0; i--)
+            {
+                Assert.IsTrue(Dp.Validate(b, i, b[i]));
+            }
+        }
+        #endregion
+
         #endregion
     }
 }

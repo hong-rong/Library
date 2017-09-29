@@ -8,7 +8,6 @@ namespace Cracking
 {
     public class Dp
     {
-
         #region dp
 
         #region TrStep
@@ -620,6 +619,68 @@ namespace Cracking
             return sum;
         }
         #endregion
+
+        #region eight queen
+        public int[] EightQueen(int n)
+        {
+            int[] b = new int[n];
+            for (int i = 0; i < b.Length; i++)
+            {
+                b[i] = -1;
+            }
+            var result = Place(b, 0);
+            if (!result)
+            {
+                return null;
+            }
+            return b;
+        }
+
+        private bool Place(int[] b, int r)
+        {
+            if (r == b.Length)
+            {
+                return true;
+            }
+            else
+            {
+                var result = false;
+                for (int i = 0; i < b.Length; i++)
+                {
+                    if (Validate(b, r, i))
+                    {
+                        b[r] = i;
+                        result = Place(b, r + 1);
+                        if (result) break;
+                    }
+                }
+                return result;
+            }
+        }
+
+        public static bool Validate(int[] b, int r, int c)
+        {
+            for (int i = 0; i < r; i++)
+            {
+                if (b[i] == c) return false;
+                int rowDistance = r - i;
+                int columnDistance = Math.Abs(b[i] - c);
+                if (rowDistance == columnDistance) return false;
+            }
+            return true;
+        }
+        #endregion
+
+        //stack of box
+        //Stack of Boxes: You have a stack of n boxes, with widths wi , heights hi, and depths di. The boxes
+        //cannot be rotated and can only be stacked on top of one another if each box in the stack is strictly
+        //larger than the box above it in width, height, and depth. Implement a method to compute the
+        //height of the tallest possible stack. The height of a stack is the sum of the heights of each box.
+        //Hints:#155, #194, #274, #260, #322, #368, #378
+        public void Sb()
+        {
+
+        }
 
         #endregion
     }
