@@ -8,6 +8,17 @@ namespace Cracking
 {
     public class Dp
     {
+        //stack of box
+        //Stack of Boxes: You have a stack of n boxes, with widths wi , heights hi, and depths di. The boxes
+        //cannot be rotated and can only be stacked on top of one another if each box in the stack is strictly
+        //larger than the box above it in width, height, and depth. Implement a method to compute the
+        //height of the tallest possible stack. The height of a stack is the sum of the heights of each box.
+        //Hints:#155, #194, #274, #260, #322, #368, #378
+        public void Sb()
+        {
+
+        }
+
         #region dp
 
         #region TrStep
@@ -621,6 +632,14 @@ namespace Cracking
         #endregion
 
         #region eight queen
+        //O O O O O O O O
+        //O O O O O O O O
+        //O O O O O O O O
+        //O O O O O O O O
+        //O O O O O O O O
+        //O O O O O O O O
+        //O O O O O O O O
+        //O O O O O O O O
         public int[] EightQueen(int n)
         {
             int[] b = new int[n];
@@ -670,17 +689,6 @@ namespace Cracking
             return true;
         }
         #endregion
-
-        //stack of box
-        //Stack of Boxes: You have a stack of n boxes, with widths wi , heights hi, and depths di. The boxes
-        //cannot be rotated and can only be stacked on top of one another if each box in the stack is strictly
-        //larger than the box above it in width, height, and depth. Implement a method to compute the
-        //height of the tallest possible stack. The height of a stack is the sum of the heights of each box.
-        //Hints:#155, #194, #274, #260, #322, #368, #378
-        public void Sb()
-        {
-
-        }
 
         #endregion
     }
