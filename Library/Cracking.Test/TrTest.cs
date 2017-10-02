@@ -13,12 +13,12 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
     [TestClass]
     public class TrTest
     {
-        private Tree _target;
+        private Tr _target;
         
         [TestInitialize]
         public void Init()
         {
-            _target = new Tree();
+            _target = new Tr();
         }
 
         #region test

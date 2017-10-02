@@ -6,8 +6,10 @@ using System.Threading;
 
 namespace Cracking
 {
-    public class Tree
+    public class Tr
     {
+
+
         #region test
         public bool HasRoute(N s, N e)
         {
@@ -380,11 +382,6 @@ namespace Cracking
             public int Height { get; set; }
         }
         #endregion
-    }
-
-    public class Tr
-    {
-        public N R { get; set; }
     }
 
     public class Btr
