@@ -14,11 +14,34 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
     public class TrTest
     {
         private Tr _target;
-        
+
         [TestInitialize]
         public void Init()
         {
             _target = new Tr();
+        }
+
+        [TestMethod]
+        public void FirstCommonATest()
+        {
+            var r = CreateBtr().R;
+            var n = _target.FirstCommonA(r.L, r.R.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.FirstCommonA(r.L, r.R.L.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.FirstCommonA(r.R.L.L, r.R.R);
+            Assert.AreEqual("20", n.Name);
+
+            n = _target.FirstCommonA(r.R.L.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.FirstCommonA(r.R.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.FirstCommonA(r.R.L.L, r);
+            Assert.AreEqual("10", n.Name);
         }
 
         #region test
@@ -759,6 +782,10 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 
         private Btr CreateBtr()
         {
+            //       10
+            //    5      20
+            //        3      7
+            //     9    18
             Bn n18 = new Bn { Name = "18" };
             Bn n9 = new Bn { Name = "9" };
 
@@ -769,6 +796,17 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             Bn n5 = new Bn { Name = "5" };
 
             Bn r = new Bn { Name = "10", L = n5, R = n20 };
+
+            //setup parent
+            n18.P = n3;
+            n9.P = n3;
+
+            n7.P = n20;
+            n3.P = n20;
+
+            n20.P = r;
+            n5.P = r;
+
             return new Btr { R = r };
         }
 
