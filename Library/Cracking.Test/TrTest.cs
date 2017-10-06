@@ -25,126 +25,28 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         public void FirstCommonATest()
         {
             var r = CreateBtr().R;
-            var n = _target.FirstCommonA(r.L, r.R.R);
+            var n = _target.CommonAncestor(r.L, r.R.R);
             Assert.AreEqual("10", n.Name);
 
-            n = _target.FirstCommonA(r.L, r.R.L.R);
+            n = _target.CommonAncestor(r.L, r.R.L.R);
             Assert.AreEqual("10", n.Name);
 
-            n = _target.FirstCommonA(r.R.L.L, r.R.R);
+            n = _target.CommonAncestor(r.R.L.L, r.R.R);
             Assert.AreEqual("20", n.Name);
 
-            n = _target.FirstCommonA(r.R.L.L, r.R.L.R);
+            n = _target.CommonAncestor(r.R.L.L, r.R.L.R);
             Assert.AreEqual("3", n.Name);
 
-            n = _target.FirstCommonA(r.R.L, r.R.L.R);
+            n = _target.CommonAncestor(r.R.L, r.R.L.R);
             Assert.AreEqual("3", n.Name);
 
-            n = _target.FirstCommonA(r.R.L.L, r);
+            n = _target.CommonAncestor(r.R.L.L, r);
             Assert.AreEqual("10", n.Name);
         }
 
-        #region test
+        #region tr test
 
-        #region Btr
-
-        [TestMethod]
-        public void GetBnTest()
-        {
-            Btr btr = CreateBtr();
-            var r = btr.GetBn("10");
-            Assert.IsNotNull(r);
-            Assert.AreEqual("5", r.L.Name);
-            Assert.AreEqual("20", r.R.Name);
-
-            r = btr.GetBn("3");
-            Assert.IsNotNull(r);
-            Assert.AreEqual("9", r.L.Name);
-            Assert.AreEqual("18", r.R.Name);
-
-            r = btr.GetBn("18");
-            Assert.IsNotNull(r);
-            Assert.IsNull(r.L);
-            Assert.IsNull(r.R);
-
-            r = btr.GetBn("99");
-            Assert.IsNull(r);
-        }
-
-        [TestMethod]
-        public void PreOTest()
-        {
-            Btr t = CreateBtr();
-            t.PreO();
-            Assert.AreEqual(1, t.GetBn("10").Order);
-            Assert.AreEqual(2, t.GetBn("5").Order);
-            Assert.AreEqual(3, t.GetBn("20").Order);
-            Assert.AreEqual(4, t.GetBn("3").Order);
-            Assert.AreEqual(5, t.GetBn("9").Order);
-            Assert.AreEqual(6, t.GetBn("18").Order);
-            Assert.AreEqual(7, t.GetBn("7").Order);
-        }
-
-        [TestMethod]
-        public void InOTest()
-        {
-            Btr t = CreateBtr();
-            t.InO();
-            Assert.AreEqual(1, t.GetBn("5").Order);
-            Assert.AreEqual(2, t.GetBn("10").Order);
-            Assert.AreEqual(3, t.GetBn("9").Order);
-            Assert.AreEqual(4, t.GetBn("3").Order);
-            Assert.AreEqual(5, t.GetBn("18").Order);
-            Assert.AreEqual(6, t.GetBn("20").Order);
-            Assert.AreEqual(7, t.GetBn("7").Order);
-        }
-
-        [TestMethod]
-        public void PostOTest()
-        {
-            Btr t = CreateBtr();
-            t.PostO();
-            Assert.AreEqual(1, t.GetBn("5").Order);
-            Assert.AreEqual(2, t.GetBn("9").Order);
-            Assert.AreEqual(3, t.GetBn("18").Order);
-            Assert.AreEqual(4, t.GetBn("3").Order);
-            Assert.AreEqual(5, t.GetBn("7").Order);
-            Assert.AreEqual(6, t.GetBn("20").Order);
-            Assert.AreEqual(7, t.GetBn("10").Order);
-        }
-
-        #endregion
-
-        #region g search
-
-        [TestMethod]
-        public void DfsTest()
-        {
-            G g = CreateG();
-            g.Dfs();
-            Assert.AreEqual(1, g.Nodes[0].Order);
-            Assert.AreEqual(2, g.Nodes[1].Order);
-            Assert.AreEqual(3, g.Nodes[3].Order);
-            Assert.AreEqual(4, g.Nodes[2].Order);
-            Assert.AreEqual(5, g.Nodes[4].Order);
-            Assert.AreEqual(6, g.Nodes[5].Order);
-        }
-
-        [TestMethod]
-        public void BfsTest()
-        {
-            G g = CreateG();
-            g.Bfs();
-            Assert.AreEqual(1, g.Nodes[0].Order);
-            Assert.AreEqual(2, g.Nodes[1].Order);
-            Assert.AreEqual(3, g.Nodes[4].Order);
-            Assert.AreEqual(4, g.Nodes[5].Order);
-            Assert.AreEqual(5, g.Nodes[3].Order);
-            Assert.AreEqual(6, g.Nodes[2].Order);
-        }
-
-        #endregion
-
+        #region route between notes
         [TestMethod]
         public void HasRouteTest()
         {
@@ -190,36 +92,23 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             g = CreateG();
             Assert.IsFalse(_target.HasRoute(new N { Name = "11" }, g.Nodes[0]));
         }
+        #endregion
 
+        #region minimal tree
         [TestMethod]
-        public void TestH()
-        {
-            Assert.AreEqual(0, new Bn().H);
-
-            Assert.AreEqual(1, new Bn { L = new Bn(), R = new Bn() }.H);
-
-            Assert.AreEqual(2, new Bn { L = new Bn { L = new Bn() } }.H);
-
-            Assert.AreEqual(2, new Bn { L = new Bn { L = new Bn() }, R = new Bn() }.H);
-
-            var btr = CreateBtr();
-            Assert.AreEqual(3, btr.R.H);
-        }
-
-        [TestMethod]
-        public void TestCreateMinTr()
+        public void CreateMinTrTest()
         {
             int[] a = { 1 };
             var bn = _target.CreateMinTr(a);
             Assert.AreEqual("1", bn.Name);
-            Assert.AreEqual(0, bn.H);
+            Assert.AreEqual(0, Tr.Height(bn));
             Assert.IsNull(bn.L);
             Assert.IsNull(bn.R);
 
             a = new[] { 1, 2 };
             bn = _target.CreateMinTr(a);
             Assert.AreEqual("1", bn.Name);
-            Assert.AreEqual(1, bn.H);
+            Assert.AreEqual(1, Tr.Height(bn));
             Assert.IsNull(bn.L);
             Assert.AreEqual("2", bn.R.Name);
 
@@ -228,7 +117,7 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             Assert.AreEqual("2", bn.Name);
             Assert.AreEqual("1", bn.L.Name);
             Assert.AreEqual("3", bn.R.Name);
-            Assert.AreEqual(1, bn.H);
+            Assert.AreEqual(1, Tr.Height(bn));
             Assert.IsNull(bn.L.L);
             Assert.IsNull(bn.L.R);
             Assert.IsNull(bn.R.L);
@@ -236,58 +125,62 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 
             a = new[] { 2, 3, 4, 5, 6, 7, 8, 9 };
             bn = _target.CreateMinTr(a);
-            Assert.AreEqual(3, bn.H);
+            Assert.AreEqual(3, Tr.Height(bn));
         }
+        #endregion
 
+        #region list of depths
         [TestMethod]
-        public void GetListOfDTest()
+        public void GetListOfDepthTest()
         {
             int[] a = { 1 };
             var bn = _target.CreateMinTr(a);
-            var list = bn.GetListOfD();
-            Assert.AreEqual(bn.H + 1, list.Length);
+            var list = _target.GetListOfDepths(bn);
+            Assert.AreEqual(Tr.Height(bn) + 1, list.Length);
             Assert.AreEqual(1, list[0].Count);
             Assert.AreEqual("1", list[0][0].Name);
 
             a = new[] { 1, 2, 3 };
             bn = _target.CreateMinTr(a);
-            list = bn.GetListOfD();
-            Assert.AreEqual(bn.H + 1, list.Length);
+            list = _target.GetListOfDepths(bn);
+            Assert.AreEqual(Tr.Height(bn) + 1, list.Length);
             Assert.AreEqual(1, list[0].Count);
             Assert.AreEqual(2, list[1].Count);
 
             a = new[] { 2, 3, 4, 5, 6, 7, 8, 9 };
             bn = _target.CreateMinTr(a);
-            list = bn.GetListOfD();
-            Assert.AreEqual(bn.H + 1, list.Length);
+            list = _target.GetListOfDepths(bn);
+            Assert.AreEqual(Tr.Height(bn) + 1, list.Length);
             Assert.AreEqual(1, list[0].Count);
             Assert.AreEqual(2, list[1].Count);
             Assert.AreEqual(4, list[2].Count);
             Assert.AreEqual(1, list[3].Count);
 
             Bn n = new Bn { Name = "1", L = new Bn { Name = "2", L = new Bn { Name = "3" } } };
-            list = n.GetListOfD();
-            Assert.AreEqual(n.H + 1, list.Length);
+            list = _target.GetListOfDepths(n);
+            Assert.AreEqual(Tr.Height(n) + 1, list.Length);
             Assert.AreEqual(1, list[0].Count);
             Assert.AreEqual(1, list[1].Count);
             Assert.AreEqual(1, list[2].Count);
         }
+        #endregion
 
+        #region check balance
         [TestMethod]
-        public void IsBalanced()
+        public void CheckBalanceTest()
         {
             Bn n = new Bn
             {
                 Name = "1"
             };
-            Assert.IsTrue(n.IsBalanced());
+            Assert.IsTrue(_target.CheckBalance(n));
 
             n = new Bn
             {
                 Name = "1",
                 L = new Bn { Name = "2" }
             };
-            Assert.IsTrue(n.IsBalanced());
+            Assert.IsTrue(_target.CheckBalance(n));
 
             n = new Bn
             {
@@ -301,7 +194,7 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
                     }
                 }
             };
-            Assert.IsFalse(n.IsBalanced());
+            Assert.IsFalse(_target.CheckBalance(n));
 
             n = new Bn
             {
@@ -315,64 +208,15 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
                     Name = "3"
                 },
             };
-            Assert.IsTrue(n.IsBalanced());
+            Assert.IsTrue(_target.CheckBalance(n));
 
             var a = new[] { 2, 3, 4, 5, 6, 7, 8, 9 };
             n = _target.CreateMinTr(a);
-            Assert.IsTrue(n.IsBalanced());
+            Assert.IsTrue(_target.CheckBalance(n));
         }
-
-        [TestMethod]
-        public void CountTest()
-        {
-            Bn n = new Bn
-            {
-                Name = "1"
-            };
-            Assert.AreEqual(1, n.Count);
-
-            n = new Bn
-            {
-                Name = "1",
-                L = new Bn { Name = "2" }
-            };
-            Assert.AreEqual(2, n.Count);
-
-            n = new Bn
-            {
-                Name = "1",
-                L = new Bn
-                {
-                    Name = "2",
-                    L = new Bn
-                    {
-                        Name = "3"
-                    }
-                }
-            };
-            Assert.AreEqual(3, n.Count);
-
-            n = new Bn
-            {
-                Name = "1",
-                L = new Bn
-                {
-                    Name = "2",
-                },
-                R = new Bn
-                {
-                    Name = "3"
-                },
-            };
-            Assert.AreEqual(3, n.Count);
-
-            var a = new[] { 2, 3, 4, 5, 6, 7, 8, 9 };
-            n = _target.CreateMinTr(a);
-            Assert.AreEqual(8, n.Count);
-        }
+        #endregion
 
         #region validate bst
-
         [TestMethod]
         public void ValidateBstTest()
         {
@@ -420,9 +264,9 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
                 Assert.IsFalse(_target.ValidateBstWithRange(bn));
             }
         }
-
         #endregion
 
+        #region successor
         [TestMethod]
         public void FindSuccessorTest()
         {
@@ -436,14 +280,14 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             Assert.AreEqual("30", _target.FindSuccessor(n, "20").Name);
             Assert.IsNull(_target.FindSuccessor(n, "30"));
         }
+        #endregion
 
-        #region build order/top sort
-
+        #region build order(top sort)
         [TestMethod]
         public void BuildOrderTest()
         {
             var g = BuildProjectG();
-            var o = g.BuildOrder();
+            var o = _target.BuildOrder(g.Nodes);
             Assert.AreEqual("f", o[0].Name);
             Assert.AreEqual("e", o[1].Name);
             Assert.AreEqual("b", o[2].Name);
@@ -492,7 +336,175 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             g.Nodes = n.ToArray();
             return g;
         }
+        #endregion
 
+        #endregion
+
+        #region common test
+
+        #region height
+        [TestMethod]
+        public void HeightTest()
+        {
+            Assert.AreEqual(0, Tr.Height(new Bn()));
+
+            Assert.AreEqual(1, Tr.Height(new Bn { L = new Bn(), R = new Bn() }));
+
+            Assert.AreEqual(2, Tr.Height(new Bn { L = new Bn { L = new Bn() } }));
+
+            Assert.AreEqual(2, Tr.Height(new Bn { L = new Bn { L = new Bn() }, R = new Bn() }));
+
+            var btr = CreateBtr();
+            Assert.AreEqual(3, Tr.Height(btr.R));
+        }
+        #endregion
+
+        #region count
+        [TestMethod]
+        public void CountTest()
+        {
+            Bn n = new Bn
+            {
+                Name = "1"
+            };
+            Assert.AreEqual(1, Tr.Count(n));
+
+            n = new Bn
+            {
+                Name = "1",
+                L = new Bn { Name = "2" }
+            };
+            Assert.AreEqual(2, Tr.Count(n));
+
+            n = new Bn
+            {
+                Name = "1",
+                L = new Bn
+                {
+                    Name = "2",
+                    L = new Bn
+                    {
+                        Name = "3"
+                    }
+                }
+            };
+            Assert.AreEqual(3, Tr.Count(n));
+
+            n = new Bn
+            {
+                Name = "1",
+                L = new Bn
+                {
+                    Name = "2",
+                },
+                R = new Bn
+                {
+                    Name = "3"
+                },
+            };
+            Assert.AreEqual(3, Tr.Count(n));
+
+            var a = new[] { 2, 3, 4, 5, 6, 7, 8, 9 };
+            n = _target.CreateMinTr(a);
+            Assert.AreEqual(8, Tr.Count(n));
+        }
+        #endregion
+
+        #region tree travel
+        [TestMethod]
+        public void DfsTest()
+        {
+            G g = CreateG();
+            Tr.Dfs(g.Nodes);
+            Assert.AreEqual(1, g.Nodes[0].Order);
+            Assert.AreEqual(2, g.Nodes[1].Order);
+            Assert.AreEqual(3, g.Nodes[3].Order);
+            Assert.AreEqual(4, g.Nodes[2].Order);
+            Assert.AreEqual(5, g.Nodes[4].Order);
+            Assert.AreEqual(6, g.Nodes[5].Order);
+        }
+
+        [TestMethod]
+        public void BfsTest()
+        {
+            G g = CreateG();
+            Tr.Bfs(g.Nodes);
+            Assert.AreEqual(1, g.Nodes[0].Order);
+            Assert.AreEqual(2, g.Nodes[1].Order);
+            Assert.AreEqual(3, g.Nodes[4].Order);
+            Assert.AreEqual(4, g.Nodes[5].Order);
+            Assert.AreEqual(5, g.Nodes[3].Order);
+            Assert.AreEqual(6, g.Nodes[2].Order);
+        }
+        #endregion
+
+        #region binary tree visit
+        [TestMethod]
+        public void PreOTest()
+        {
+            Btr t = CreateBtr();
+            Tr.PreO(t.R);
+            Assert.AreEqual(1, Tr.GetBn(t.R, "10").Order);
+            Assert.AreEqual(2, Tr.GetBn(t.R, "5").Order);
+            Assert.AreEqual(3, Tr.GetBn(t.R, "20").Order);
+            Assert.AreEqual(4, Tr.GetBn(t.R, "3").Order);
+            Assert.AreEqual(5, Tr.GetBn(t.R, "9").Order);
+            Assert.AreEqual(6, Tr.GetBn(t.R, "18").Order);
+            Assert.AreEqual(7, Tr.GetBn(t.R, "7").Order);
+        }
+
+        [TestMethod]
+        public void InOTest()
+        {
+            Btr t = CreateBtr();
+            Tr.InO(t.R);
+            Assert.AreEqual(1, Tr.GetBn(t.R, "5").Order);
+            Assert.AreEqual(2, Tr.GetBn(t.R, "10").Order);
+            Assert.AreEqual(3, Tr.GetBn(t.R, "9").Order);
+            Assert.AreEqual(4, Tr.GetBn(t.R, "3").Order);
+            Assert.AreEqual(5, Tr.GetBn(t.R, "18").Order);
+            Assert.AreEqual(6, Tr.GetBn(t.R, "20").Order);
+            Assert.AreEqual(7, Tr.GetBn(t.R, "7").Order);
+        }
+
+        [TestMethod]
+        public void PostOTest()
+        {
+            Btr t = CreateBtr();
+            Tr.PostO(t.R);
+            Assert.AreEqual(1, Tr.GetBn(t.R, "5").Order);
+            Assert.AreEqual(2, Tr.GetBn(t.R, "9").Order);
+            Assert.AreEqual(3, Tr.GetBn(t.R, "18").Order);
+            Assert.AreEqual(4, Tr.GetBn(t.R, "3").Order);
+            Assert.AreEqual(5, Tr.GetBn(t.R, "7").Order);
+            Assert.AreEqual(6, Tr.GetBn(t.R, "20").Order);
+            Assert.AreEqual(7, Tr.GetBn(t.R, "10").Order);
+        }
+        #endregion
+
+        #region get binary node
+        [TestMethod]
+        public void GetBnTest()
+        {
+            Btr btr = CreateBtr();
+            var r = Tr.GetBn(btr.R, "10");
+            Assert.IsNotNull(r);
+            Assert.AreEqual("5", r.L.Name);
+            Assert.AreEqual("20", r.R.Name);
+
+            r = Tr.GetBn(btr.R, "3");
+            Assert.IsNotNull(r);
+            Assert.AreEqual("9", r.L.Name);
+            Assert.AreEqual("18", r.R.Name);
+
+            r = Tr.GetBn(btr.R, "18");
+            Assert.IsNotNull(r);
+            Assert.IsNull(r.L);
+            Assert.IsNull(r.R);
+
+            r = Tr.GetBn(btr.R, "99");
+            Assert.IsNull(r);
+        }
         #endregion
 
         #endregion
