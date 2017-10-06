@@ -8,50 +8,26 @@ namespace Cracking
 {
     public class Tr
     {
-        public Bn CommonAncestor(Bn n1, Bn n2)
+        public Bn CommonAncestor2(Bn n1, Bn n2) 
         {
-            var c1 = 0;
-            var p1 = n1;
-            while (p1.P != null)
-            {
-                p1 = p1.P;
-                c1++;
-            }
-            var c2 = 0;
-            var p2 = n2;
-            while (p2.P != null)
-            {
-                p2 = p2.P;
-                c2++;
-            }
-            var dat = Math.Abs(c1 - c2);
-            p1 = n1;
-            p2 = n2;
-            if (c1 > c2)
-            {
-                while (dat > 0)
-                {
-                    p1 = p1.P;
-                    dat--;
-                }
-            }
-            else
-            {
-                while (dat > 0)
-                {
-                    p2 = p2.P;
-                    dat--;
-                }
-            }
-            while (p1 != p2)
-            {
-                p1 = p1.P;
-                p2 = p2.P;
-            }
 
-            return p1;
+
+            throw new NotImplementedException();
         }
 
+        private bool Covers(Bn r, Bn n)
+        {
+            if (r == null) return false;
+            if (r == n) return true;
+
+            return Covers(r.L, n) || Covers(r.R, n);
+        }
+
+        public Bn CommonAncestor3(Bn n1, Bn n2)
+        {
+            throw new NotImplementedException();
+        }
+        
         #region tr
 
         #region route between nodes
@@ -317,6 +293,63 @@ namespace Cracking
                 nodeOrders.Add(n);
             }
         }
+
+        #endregion
+
+        #region common ancestor
+
+        #region solution one
+        //has parent, search like linked list merge note
+        public Bn CommonAncestor1(Bn n1, Bn n2)
+        {
+            var c1 = 0;
+            var p1 = n1;
+            while (p1.P != null)
+            {
+                p1 = p1.P;
+                c1++;
+            }
+            var c2 = 0;
+            var p2 = n2;
+            while (p2.P != null)
+            {
+                p2 = p2.P;
+                c2++;
+            }
+            var dat = Math.Abs(c1 - c2);
+            p1 = n1;
+            p2 = n2;
+            if (c1 > c2)
+            {
+                while (dat > 0)
+                {
+                    p1 = p1.P;
+                    dat--;
+                }
+            }
+            else
+            {
+                while (dat > 0)
+                {
+                    p2 = p2.P;
+                    dat--;
+                }
+            }
+            while (p1 != p2)
+            {
+                p1 = p1.P;
+                p2 = p2.P;
+            }
+
+            return p1;
+        }
+        #endregion
+
+        #region solution two
+        #endregion
+
+        #region solution three
+        #endregion
 
         #endregion
 

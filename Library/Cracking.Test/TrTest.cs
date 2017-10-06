@@ -21,29 +21,6 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             _target = new Tr();
         }
 
-        [TestMethod]
-        public void FirstCommonATest()
-        {
-            var r = CreateBtr().R;
-            var n = _target.CommonAncestor(r.L, r.R.R);
-            Assert.AreEqual("10", n.Name);
-
-            n = _target.CommonAncestor(r.L, r.R.L.R);
-            Assert.AreEqual("10", n.Name);
-
-            n = _target.CommonAncestor(r.R.L.L, r.R.R);
-            Assert.AreEqual("20", n.Name);
-
-            n = _target.CommonAncestor(r.R.L.L, r.R.L.R);
-            Assert.AreEqual("3", n.Name);
-
-            n = _target.CommonAncestor(r.R.L, r.R.L.R);
-            Assert.AreEqual("3", n.Name);
-
-            n = _target.CommonAncestor(r.R.L.L, r);
-            Assert.AreEqual("10", n.Name);
-        }
-
         #region tr test
 
         #region route between notes
@@ -336,6 +313,85 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             g.Nodes = n.ToArray();
             return g;
         }
+        #endregion
+
+        #region common ancestor
+        
+        #region solution one
+        [TestMethod]
+        public void CommonAncestorTest()
+        {
+            var r = CreateBtr().R;
+            var n = _target.CommonAncestor1(r.L, r.R.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor1(r.L, r.R.L.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor1(r.R.L.L, r.R.R);
+            Assert.AreEqual("20", n.Name);
+
+            n = _target.CommonAncestor1(r.R.L.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor1(r.R.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor1(r.R.L.L, r);
+            Assert.AreEqual("10", n.Name);
+        }
+        #endregion
+
+        #region solution two
+        [TestMethod]
+        public void CommonAncestor2Test()
+        {
+            var r = CreateBtr().R;
+            var n = _target.CommonAncestor2(r.L, r.R.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor2(r.L, r.R.L.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor2(r.R.L.L, r.R.R);
+            Assert.AreEqual("20", n.Name);
+
+            n = _target.CommonAncestor2(r.R.L.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor2(r.R.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor2(r.R.L.L, r);
+            Assert.AreEqual("10", n.Name);
+        }
+        #endregion
+
+        #region solution three
+        [TestMethod]
+        public void CommonAncestor3Test()
+        {
+            var r = CreateBtr().R;
+            var n = _target.CommonAncestor3(r.L, r.R.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor3(r.L, r.R.L.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor3(r.R.L.L, r.R.R);
+            Assert.AreEqual("20", n.Name);
+
+            n = _target.CommonAncestor3(r.R.L.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor3(r.R.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor3(r.R.L.L, r);
+            Assert.AreEqual("10", n.Name);
+        }
+        #endregion
+
         #endregion
 
         #endregion
