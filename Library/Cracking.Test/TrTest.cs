@@ -347,22 +347,22 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         public void CommonAncestor2Test()
         {
             var r = CreateBtr().R;
-            var n = _target.CommonAncestor2(r.L, r.R.R);
+            var n = _target.CommonAncestor2(r, r.L, r.R.R);
             Assert.AreEqual("10", n.Name);
 
-            n = _target.CommonAncestor2(r.L, r.R.L.R);
+            n = _target.CommonAncestor2(r, r.L, r.R.L.R);
             Assert.AreEqual("10", n.Name);
 
-            n = _target.CommonAncestor2(r.R.L.L, r.R.R);
+            n = _target.CommonAncestor2(r, r.R.L.L, r.R.R);
             Assert.AreEqual("20", n.Name);
 
-            n = _target.CommonAncestor2(r.R.L.L, r.R.L.R);
+            n = _target.CommonAncestor2(r, r.R.L.L, r.R.L.R);
             Assert.AreEqual("3", n.Name);
 
-            n = _target.CommonAncestor2(r.R.L, r.R.L.R);
+            n = _target.CommonAncestor2(r, r.R.L, r.R.L.R);
             Assert.AreEqual("3", n.Name);
 
-            n = _target.CommonAncestor2(r.R.L.L, r);
+            n = _target.CommonAncestor2(r, r.R.L.L, r);
             Assert.AreEqual("10", n.Name);
         }
         #endregion
@@ -372,22 +372,22 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         public void CommonAncestor3Test()
         {
             var r = CreateBtr().R;
-            var n = _target.CommonAncestor3(r.L, r.R.R);
+            var n = _target.CommonAncestor3(r, r.L, r.R.R);
             Assert.AreEqual("10", n.Name);
 
-            n = _target.CommonAncestor3(r.L, r.R.L.R);
+            n = _target.CommonAncestor3(r, r.L, r.R.L.R);
             Assert.AreEqual("10", n.Name);
 
-            n = _target.CommonAncestor3(r.R.L.L, r.R.R);
+            n = _target.CommonAncestor3(r, r.R.L.L, r.R.R);
             Assert.AreEqual("20", n.Name);
 
-            n = _target.CommonAncestor3(r.R.L.L, r.R.L.R);
+            n = _target.CommonAncestor3(r, r.R.L.L, r.R.L.R);
             Assert.AreEqual("3", n.Name);
 
-            n = _target.CommonAncestor3(r.R.L, r.R.L.R);
+            n = _target.CommonAncestor3(r, r.R.L, r.R.L.R);
             Assert.AreEqual("3", n.Name);
 
-            n = _target.CommonAncestor3(r.R.L.L, r);
+            n = _target.CommonAncestor3(r, r.R.L.L, r);
             Assert.AreEqual("10", n.Name);
         }
         #endregion

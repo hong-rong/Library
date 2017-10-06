@@ -8,26 +8,39 @@ namespace Cracking
 {
     public class Tr
     {
-        public Bn CommonAncestor2(Bn n1, Bn n2) 
+        public Bn CommonAncestor2(Bn r, Bn n1, Bn n2)
         {
+            if (!Covers(r, n1) || !Covers(r, n2)) return null;
+            if (Covers(n1, n2)) return n1;
+            if (Covers(n2, n1)) return n2;
 
+            var s = GetSibling(n1);
+            while (!Covers(s, n2))
+            {
+                s = GetSibling(s.P);
+            }
 
-            throw new NotImplementedException();
+            return s.P;
+        }
+
+        private Bn GetSibling(Bn n)
+        {
+            if (n == null || n.P == null) return null;
+            return n.P.L == n ? n.P.R : n.P.L;
         }
 
         private bool Covers(Bn r, Bn n)
         {
             if (r == null) return false;
             if (r == n) return true;
-
             return Covers(r.L, n) || Covers(r.R, n);
         }
 
-        public Bn CommonAncestor3(Bn n1, Bn n2)
+        public Bn CommonAncestor3(Bn r, Bn n1, Bn n2)
         {
             throw new NotImplementedException();
         }
-        
+
         #region tr
 
         #region route between nodes
