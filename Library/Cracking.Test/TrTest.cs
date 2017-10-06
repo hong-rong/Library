@@ -22,10 +22,26 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         }
 
         [TestMethod]
-        public void CheckSubTrTest() 
+        public void CheckSubTrTest()
         {
-            var btr = CreateBtr();
+            var r = CreateBtr().R;
+            var r2 = CreateBtr().R;
+            Assert.IsTrue(_target.CheckSubTr(r, r2));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.L));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R.L));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R.R));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R.L.L));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R.L.R));
 
+            r2.R.L.L = null;
+            Assert.IsFalse(_target.CheckSubTr(r, r2));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.L));
+            Assert.IsFalse(_target.CheckSubTr(r, r2.R));
+            Assert.IsFalse(_target.CheckSubTr(r, r2.R.L));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R.R));
+            Assert.IsFalse(_target.CheckSubTr(r, r2.R.L.L));
+            Assert.IsTrue(_target.CheckSubTr(r, r2.R.L.R));
         }
 
         #region tr test
@@ -323,7 +339,7 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         #endregion
 
         #region common ancestor
-        
+
         #region solution one
         [TestMethod]
         public void CommonAncestorTest()

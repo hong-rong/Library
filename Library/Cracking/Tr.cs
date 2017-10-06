@@ -14,7 +14,7 @@ namespace Cracking
 
             var h1 = Tr.Height(t1);
             var h2 = Tr.Height(t2);
-            var list = GetNodesAtHeight(t1, h1 - h2 + 1);
+            var list = GetNodesAtHeight(t1, h1 - h2);
             for (int i = 0; i < list.Count; i++)
             {
                 if (CompareTr(list[i], t2)) return true;
