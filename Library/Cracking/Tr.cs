@@ -8,35 +8,7 @@ namespace Cracking
 {
     public class Tr
     {
-        public Bn CommonAncestor2(Bn r, Bn n1, Bn n2)
-        {
-            if (!Covers(r, n1) || !Covers(r, n2)) return null;
-            if (Covers(n1, n2)) return n1;
-            if (Covers(n2, n1)) return n2;
-
-            var s = GetSibling(n1);
-            while (!Covers(s, n2))
-            {
-                s = GetSibling(s.P);
-            }
-
-            return s.P;
-        }
-
-        private Bn GetSibling(Bn n)
-        {
-            if (n == null || n.P == null) return null;
-            return n.P.L == n ? n.P.R : n.P.L;
-        }
-
-        private bool Covers(Bn r, Bn n)
-        {
-            if (r == null) return false;
-            if (r == n) return true;
-            return Covers(r.L, n) || Covers(r.R, n);
-        }
-
-        public Bn CommonAncestor3(Bn r, Bn n1, Bn n2)
+        public Bn CommonAncestor4(Bn r, Bn n1, Bn n2)
         {
             throw new NotImplementedException();
         }
@@ -312,7 +284,7 @@ namespace Cracking
         #region common ancestor
 
         #region solution one
-        //has parent, search like linked list merge note
+        //has parent, search like linked list to a merge node
         public Bn CommonAncestor1(Bn n1, Bn n2)
         {
             var c1 = 0;
@@ -359,9 +331,56 @@ namespace Cracking
         #endregion
 
         #region solution two
+        //has parent, start from n1, check if n2 is covered by a sibling node of n1's ancestor
+        public Bn CommonAncestor2(Bn r, Bn n1, Bn n2)
+        {
+            if (!Covers(r, n1) || !Covers(r, n2)) return null;
+            if (Covers(n1, n2)) return n1;
+            if (Covers(n2, n1)) return n2;
+
+            var s = GetSibling(n1);
+            while (!Covers(s, n2))
+            {
+                s = GetSibling(s.P);
+            }
+
+            return s.P;
+        }
+
+        private Bn GetSibling(Bn n)
+        {
+            if (n == null || n.P == null) return null;
+            return n.P.L == n ? n.P.R : n.P.L;
+        }
+
+        private bool Covers(Bn r, Bn n)
+        {
+            if (r == null) return false;
+            if (r == n) return true;
+            return Covers(r.L, n) || Covers(r.R, n);
+        }
         #endregion
 
         #region solution three
+        //no parent, check if two nodes on the same side from root node
+        public Bn CommonAncestor3(Bn r, Bn n1, Bn n2)
+        {
+            if (r == null) return null;
+            if (r == n1) return n1;
+            if (r == n2) return n2;
+
+            var n1OnLeft = Covers(r.L, n1);
+            var n2OnLeft = Covers(r.L, n2);
+            if (n1OnLeft != n2OnLeft) return r;
+            return n1OnLeft ? CommonAncestor3(r.L, n1, n2) : CommonAncestor3(r.R, n1, n2);
+        }
+        #endregion
+
+        #region solution four
+
+        #endregion
+
+        #region solution four
         #endregion
 
         #endregion

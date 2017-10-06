@@ -392,6 +392,31 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
         }
         #endregion
 
+        #region solution four
+        [TestMethod]
+        public void CommonAncestor4Test()
+        {
+            var r = CreateBtr().R;
+            var n = _target.CommonAncestor4(r, r.L, r.R.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor4(r, r.L, r.R.L.R);
+            Assert.AreEqual("10", n.Name);
+
+            n = _target.CommonAncestor4(r, r.R.L.L, r.R.R);
+            Assert.AreEqual("20", n.Name);
+
+            n = _target.CommonAncestor4(r, r.R.L.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor4(r, r.R.L, r.R.L.R);
+            Assert.AreEqual("3", n.Name);
+
+            n = _target.CommonAncestor4(r, r.R.L.L, r);
+            Assert.AreEqual("10", n.Name);
+        }
+        #endregion
+
         #endregion
 
         #endregion
