@@ -21,6 +21,13 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
             _target = new Tr();
         }
 
+        [TestMethod]
+        public void CheckSubTrTest() 
+        {
+            var btr = CreateBtr();
+
+        }
+
         #region tr test
 
         #region route between notes
@@ -875,10 +882,10 @@ namespace OneHydra.SeoAutomation.Data.UnitTests.Repositories
 
         private Btr CreateBtr()
         {
-            //       10
-            //    5      20
-            //        3      7
-            //     9    18
+            //        10
+            //    5       20
+            //         3      7
+            //       9   18
             Bn n18 = new Bn { Name = "18" };
             Bn n9 = new Bn { Name = "9" };
 

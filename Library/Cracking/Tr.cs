@@ -8,9 +8,67 @@ namespace Cracking
 {
     public class Tr
     {
-        public Bn CommonAncestor4(Bn r, Bn n1, Bn n2)
+        public bool CheckSubTr(Bn t1, Bn t2)
         {
-            throw new NotImplementedException();
+            if (t1 == null || t2 == null) throw new ArgumentException();
+
+            var h1 = Tr.Height(t1);
+            var h2 = Tr.Height(t2);
+            var list = GetNodesAtHeight(t1, h1 - h2 + 1);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (CompareTr(list[i], t2)) return true;
+            }
+            return false;
+        }
+
+        private List<Bn> GetNodesAtHeight(Bn r, int height)
+        {
+            if (r == null) return null;
+
+            List<Bn> list = new List<Bn>();
+            Queue<Bn> q = new Queue<Bn>();
+            q.Enqueue(r);
+            int h = 0;
+
+            while (q.Count != 0)
+            {
+                int count = q.Count;
+                if (h != height)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        var n = q.Dequeue();
+                        q.Enqueue(n.L);
+                        q.Enqueue(n.R);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        list.Add(q.Dequeue());
+                    }
+                    break;
+                }
+                h++;
+            }
+
+            return list;
+        }
+
+        private bool CompareTr(Bn n1, Bn n2)
+        {
+            if (n1 == null && n2 == null) return true;
+            if (n1 == null || n2 == null) return false;
+
+            if (n1.Name != n2.Name)
+            {
+                return false;
+            }
+            var result = CompareTr(n1.L, n2.L);
+            if (!result) return false;
+            return CompareTr(n1.R, n2.R);
         }
 
         #region tr
@@ -377,12 +435,23 @@ namespace Cracking
         #endregion
 
         #region solution four
-
+        public Bn CommonAncestor4(Bn r, Bn n1, Bn n2)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region solution four
         #endregion
 
+        #endregion
+
+        #region check subtree
+        //Tl and T2 are two very large binary trees, with Tl much bigger than T2. Create an
+        //algorithm to determine if T2 is a subtree of Tl.
+        //A tree T2 is a subtree of Tl if there exists a node n in Tl such that the subtree of n is identical to T2.
+        //That is, if you cut off the tree at node n, the two trees would be identical.
+        //Hints:#4, #11, #18, #31, #37
         #endregion
 
         #endregion
