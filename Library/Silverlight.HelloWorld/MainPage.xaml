@@ -3,21 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"     
+    xmlns:views = "clr-namespace:Silverlight.HelloWorld.Views" 
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
     <Grid x:Name="LayoutRoot" Background="White">
-        <StackPanel>
-            <TextBlock x:Name="TextMessage"
-                       Text="Hello World!"
-                       Margin="5">
-            </TextBlock>
-
-            <Button x:Name="ClickMe"
-                    Click="ClickMe_Click"
-                    Content="Click Me!"
-                    Margin="5">
-            </Button>
-        </StackPanel>
+        <!--<views:StudentView x:Name="StudentViewControl" Loaded="StudentViewControl_Loaded"></views:StudentView>-->
+        <Button x:Name="useDomButton" Content="Use DOM" Width="75" Height="30" Click="useDomButton_Click"></Button>
+        
     </Grid>
+
 </UserControl>
